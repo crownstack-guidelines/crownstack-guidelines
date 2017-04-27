@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Building a Javascript web app, or sipping the node.js koolaid</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2010/11/03/sipping-the-nodejs-koolaid.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Building a Javascript web app, or sipping the node.js koolaid
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#worklog">worklog</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        November 03, 2010
+      </span>
+    
+  </p>
+
+  <div id="post"><p>I’ve been toying around with the idea of building a 
+<a href="http://mdswanson.com/blog/2010/10/31/weekly-noise-2-so-its-like-a-screensaver.html">small web application</a> 
+with a completely Javascript stack, from top-to-bottom.  After perusing GitHub for a bit, 
+I found that it is actually doable.</p>
+
+<p>For the purpose of this post, I’ll consider a basic stack to consist of: a
+server, a web framework, a backend server and a templating engine.  And I’ll also
+use Javascript on the front-end.</p>
+
+<p>Here’s the rundown of what I’ll be using for my current side-project and how to 
+get it installed.</p>
+
+<p>#Server: node.js
+<a href="http://nodejs.org"><code class="highlighter-rouge">node.js</code></a> is an evented I/O server that uses Google’s V8 
+Javascript engine.  All the cool kids are doing it.</p>
+
+<p>To install <code class="highlighter-rouge">node.js</code> in Linux: <br />
+<a href="http://nodejs.org/#download">Download</a> the tarball and extract it <br />
+Then in your favorite terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd node
+./configure You may get some warnings about missing SSL components, if so do:  
+
+apt-get install openssl libssl-dev pkg-config    and then try again.  You can install `node.js` without SSL but you will run  into problems with `socket.io` later.  After you get the green-light from configure, run these:
+
+make
+make install
+make test
+</code></pre>
+</div>
+
+<p>Check that it worked with <code class="highlighter-rouge">node --version</code>.</p>
+
+<p>#npm
+<a href="http://npm.mape.me/"><code class="highlighter-rouge">npm</code></a> is a package manager for <code class="highlighter-rouge">node</code> libraries.<br />
+Think of it like PyPi or Rubygems.</p>
+
+<p>To install <code class="highlighter-rouge">npm</code>: <br />
+In your favorite terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl http://npmjs.org/install.sh | sh
+</code></pre>
+</div>
+
+<p>See the <a href="https://github.com/isaacs/npm/blob/master/README.md">README</a> if 
+you get permission errors, or just bust out <code class="highlighter-rouge">sudo</code> if you like living 
+dangerously.</p>
+
+<p>Now we can install all the other libraries with <code class="highlighter-rouge">npm</code> instead of grabbing 
+tarballs or cloning repos.</p>
+
+<p>#Framework: express.js
+<a href="http://expressjs.com/"><code class="highlighter-rouge">express.js</code></a> is Sinatra-inspired web framework 
+for <code class="highlighter-rouge">node</code>.  It’s billed as “insanely fast, insanely sexy” so what’s 
+not to like!</p>
+
+<p>Install it with <code class="highlighter-rouge">npm</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install express
+</code></pre>
+</div>
+
+<p>You can run <code class="highlighter-rouge">express</code> in a directory to setup a skeleton project structure.</p>
+
+<p>#Templates: jade
+<a href="http://jade-lang.com/"><code class="highlighter-rouge">jade</code></a> is a templating engine for <code class="highlighter-rouge">node</code> that is 
+similar to <code class="highlighter-rouge">Haml</code>. I am still looking for something closer to <code class="highlighter-rouge">jinja2</code> but 
+<code class="highlighter-rouge">jade</code> will do for now.</p>
+
+<p>Install it with <code class="highlighter-rouge">npm</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install jade   
+npm install less
+</code></pre>
+</div>
+
+<p>#Backend: mongoose + MongoDB
+<a href="https://github.com/LearnBoost/mongoose"><code class="highlighter-rouge">mongoose</code></a> is a MongoDB ORM 
+specifically design for the asynchronous callback model used in <code class="highlighter-rouge">node</code>. 
+MongoDB can also speak Javascript on its own plus everything is JSON-like.</p>
+
+<p>Follow the instructions <a href="http://www.mongodb.org/display/DOCS/Quickstart+Unix">here</a> 
+if you don’t have MongoDB installed.  Or maybe you can use <code class="highlighter-rouge">apt-get install mongodb</code> 
+if you are lazy like me.</p>
+
+<p>Then install <code class="highlighter-rouge">mongoose</code> with <code class="highlighter-rouge">npm</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install mongoose   
+</code></pre>
+</div>
+
+<p>#Front-end goodies:
+##jquery
+Hopefully, no explanation necessary; drop this into your HTML and be on your way:<br />
+<code class="highlighter-rouge">&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;</code></p>
+
+<p>##Socket.IO
+<a href="http://socket.io"><code class="highlighter-rouge">Socket.IO</code></a> provides an interface for pushing real-time 
+updates using WebSockets + browser fallbacks (for those poor non-Chrome users).
+It plays nicely with <code class="highlighter-rouge">express</code>.</p>
+
+<p>Install it with <code class="highlighter-rouge">npm</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install socket.io
+</code></pre>
+</div>
+
+<p>Check out the <a href="http://socket.io/">docs</a> for instructions on how to setup the 
+client-side stuff.</p>
+
+<p>##Raphaël.js
+<a href="http://raphaeljs.com/"><code class="highlighter-rouge">Raphaël.js</code></a> is a small SVG drawing and animation library
+that makes it simple to make pretty things happen in the browser.</p>
+
+<p>You can play around with it here: <a href="http://raphaeljs.com/playground.html">http://raphaeljs.com/playground.html</a></p>
+
+<hr />
+
+<p>I was able to get everything working together (albeit every piece is doing very 
+basic stuff) so my ‘proof-of-concept’ is complete and I can start working on the 
+actual app now.</p>
+
+<p>I’ve dubbed this new stack <strong>MUNJE</strong> (pronounced like <code class="highlighter-rouge">munge</code>) for 
+Mongo-Unix-Node-Jade-Express…and because no one will be able to decipher my 
+ugly Javascript code ;-)</p>
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2013/08/07/interview-to-implementation-horizon-report.html">Interview to Implementation: Horizon Report</a></li>
+          
+        
+          
+            <li><a href="/blog/2013/07/24/step-by-step-ux-improvement-screenshot-upload.html">Step-by-Step UX Improvement: Screenshot Upload</a></li>
+          
+        
+          
+            <li><a href="/blog/2011/08/21/update-on-lanyon-crossdomain-ajax-posts.html">Update on Lanyon + Cross-domain AJAX POSTs with CORS</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

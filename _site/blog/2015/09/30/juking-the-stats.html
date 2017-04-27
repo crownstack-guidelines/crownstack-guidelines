@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Juking the Stats</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2015/09/30/juking-the-stats.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Juking the Stats
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#practices">practices</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        September 30, 2015
+      </span>
+    
+  </p>
+
+  <div id="post"><blockquote>
+  <p>Roland ‘Prezbo’ Pryzbylewski: I don’t get it. All this so we score higher on the state tests? If we’re teaching the kids the test questions, what is it assessing in them?</p>
+
+  <p>Grace Sampson: Nothing. It assesses us. The test scores go up, they can say the schools are improving. The scores stay down, they can’t.</p>
+
+  <p>Roland ‘Prezbo’ Pryzbylewski: Juking the stats.</p>
+
+  <p><cite>The Wire S04E09: Know Your Place</cite></p>
+</blockquote>
+
+<p>Our team had a meeting the other day to talk about “bug injection rate”. This is a metric designed to capture how many bugs a person/team/group is creating. You may see this expressed as a ratio of how many bugs you create vs bugs you fix or how many bugs you create vs how many features you deliver.</p>
+
+<p>Putting implementation aside, the aim of this metric is to measure bugs as a function of software quality. A low bug injection rate could point to high quality software; changes that cause this rate to go down could indicate the team is moving in the right direction.</p>
+
+<p>There is a nuanced point when it comes to trying to fit quantitative metrics around complex systems (like software projects). You have to be very diligent about capturing data passively and not setting a target objective than can be optimized for.</p>
+
+<p>In the case of bug injection, passively measuring how many bugs are created could produce some interesting trends. But the data cannot stand on its own; it needs some kind of analysis to put it in context.</p>
+
+<p>The system is too complex to distill down to a single number.</p>
+
+<p>Does a team have a high bug injection rate because they are working in an untested, legacy system? Does shipping quickly to validate with users allow for an increase in bugs? Have new team members joined the project recently? Has their been a renewed vigor in internal testing? How large is the codebase?</p>
+
+<p>Maybe there is a simpler, core problem. Maybe people are working sloppily or not taking care to test their changes thoroughly.</p>
+
+<p>But without context and framing, it is near impossible to draw conclusions from a single metric in isolation.</p>
+
+<p>A more troublesome situation arises when a metric is used as a way to compare across individuals or teams. Knowing that there is an objective measurement that we are being benchmarked against will change behaviors, intentionally or not.</p>
+
+<p>If we take a pessimistic view that our team is being judged solely by bug injection rate, then some bad behaviors will follow if we act in self-preserving manner.</p>
+
+<p>We will start having discussions about if certain behavior “is a bug” or should instead be classified as a “new story” or a “change request”. Developers will point to “incomplete requirements” and have to battle with product owners (who might also be trying to optimize their own metrics around re-work and “missed requirements”) over who is getting dinged. Trivial bugs will get fixed outside of the “official” channels so as to remain undetected in a monthly report.</p>
+
+<p>The idea of collective code ownership goes out the window if we need to track down who “injected” a bug. We have to justify why this bug was “inherited” by our team and thus should not count against us. This feeds into a culture of blame and defensiveness.</p>
+
+<p>Our team has a practice of doing a “bug hunt” — a designated time for everyone to try to break the software and find tricky bugs. If “bug rate” is a critical measurement of our team’s performance, we should stop this practice if we are optimizing in our own self-interest (even if we believe a bug hunt will lead to a better product for our customer).</p>
+
+<hr />
+
+<p>This type of negative behavior can be countered if the team has strong shared values and external support. But as a team gains or loses members, it can be difficult to keep the culture of “doing what’s right” vs “doing what’s good for the numbers”. Giving someone full context is much more difficult than pointing to a number in a spreadsheet.</p>
+
+<p>You can do this same thought experiment for code quality metrics (are we making the code better or making this tool yell at us less?), pointing (are we accurately forecasting or trying to get a high-score?), or code coverage (optimizing for test quality or quantity?).</p>
+
+<p>I recognize that simply saying “this stuff is unmeasurable” is not practical, but we must be very careful about how we choose to measure complex systems and to consider the <a href="https://en.wikipedia.org/wiki/Hawthorne_effect">observer effect</a> when capturing any metrics. Aim to use data to support your own experiences and try to avoid allowing situations where parties are motivated to juke the stats.</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2016/04/22/compounding-technical-debt.html">Compounding technical debt</a></li>
+          
+        
+          
+            <li><a href="/blog/2016/01/25/sell-or-kill.html">Internal tools should be sold or killed</a></li>
+          
+        
+          
+            <li><a href="/blog/2015/10/26/code-neutral.html">Code Neutral</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Writing a Postmortem</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2016/05/03/writing-a-postmortem.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Writing a Postmortem
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#product_dev">product dev</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        May 03, 2016
+      </span>
+    
+  </p>
+
+  <div id="post"><p>Despite our best efforts, sometimes things just go wrong. After the fires have been put out, it is a common practice to reflect and figure out what happened.</p>
+
+<p>In the medical world, this is done in a <a href="http://mdswanson.com/writeup/2012/10/29/complications.html">Mortality and Morbidity panel</a> – a group that convenes not to assign blame, but to assess the decision making process to improve future outcomes. For software products, we use a written postmortem.</p>
+
+<p>I’ve never written one of these postmortems. Unfortunately, there was an issue with <a href="/morale/">MoraleApp</a> – a team morale tracker that I am managing – that warranted stepping back and evaluating what went wrong.</p>
+
+<p>I wanted to start with a template and I found one that I liked from <a href="https://blog.travis-ci.com/2014-06-26-three-ingredients-to-a-great-postmortem/">Travis CI</a>. The template has three sections:</p>
+
+<ul>
+  <li>Regret: empathize with your customers (it’s about them, not you); actually apologize</li>
+  <li>Reason: describe the incident in detail, but without blame or judgment</li>
+  <li>Remedy: lay out the corrective action you’ve taken or plan to take</li>
+</ul>
+
+<p>I waited a few days before writing this, mainly because I was really angry about the situation (and very upset with a certain monkey-themed email company).</p>
+
+<p>Without further ado, here is what I came up with:</p>
+
+<hr />
+
+<h2 id="moraleappcom-daily-team-emails-not-sent-out">moraleapp.com: Daily team emails not sent out</h2>
+<p>On April 21, approximately 500 daily team emails were not sent out to customers scheduled to receive them at 3PM EST. We recognize that the failure to deliver these emails caused confusion and might have made our customers day worse – which is not acceptable for an application that tracks employee morale. Teams use the data collected from these daily emails to observe trends over time and losing data points makes it harder to do this.</p>
+
+<p>We messed up and we are sorry for causing this disruption.</p>
+
+<h2 id="what-went-wrong">What went wrong?</h2>
+<p>MoraleApp uses an external vendor to send transactional emails. A recent change to the billing plan from our email vendor necessitated a change to our account before April 27.</p>
+
+<p>After reading through the provided instructions on making the account change, I began the process at around 2:30PM EST on April 21. The change involved creating an account in a new system, ensuring that our email sending domain had both DKIM and SPF records correctly configured, ensuring that our domain was verified, and then linking the old account to the new system.</p>
+
+<p>At 2:40PM EST, I logged into the admin panel and checked the DKIM/SPF records and that our sending domain was verified. I created the new account and successfully linked the old account.</p>
+
+<p>At 3:00PM EST, a batch of emails was scheduled to be sent and I observed that the emails were being immediately marked as Rejected from our email vendor and, thus, not being sent out to our customers.</p>
+
+<p>The Rejected status code indicated that the emails were “unsigned”. This behavior happens when you try to send from domains that are not verified or are missing the DKIM/SPF records.</p>
+
+<p>Upon revisiting the admin panel, the “moraleapp.com” sending domain was now flagged as “not verified”. The DKIM/SPF records were still in place.</p>
+
+<p>I triggered a verification request email and immediately verified the domain upon receiving the email. Subsequent emails were delivered successfully.</p>
+
+<p>After monitoring our outgoing mail for the next several days, I’ve concluded that the issue is resolved.</p>
+
+<h2 id="going-forward">Going forward?</h2>
+<p>I mistakenly interpreted the changes I was making to our account as simply a billing change and did not treat it as a major configuration change. As a result, I made this change during peak activity time for the app.</p>
+
+<p>In the future, infrastructure changes will be performed outside of peak usage windows to avoid service interruption. I will plan how to verify that the changes made are working. In this case, I should have generated a test email and been notified immediately that the message was rejected and avoided losing customer emails.</p>
+
+<p>Additionally, I will be investigating if the webhooks or API offered by our email provider can help us to handle sending failures in a more resilient way (by resending or alerting me to the failures more quickly).</p>
+
+<h2 id="summary">Summary</h2>
+<p>A configuration change we made to our email provider caused a number of teams to not receive emails on April 21. We did not plan for this change in the appropriate manner. Future changes will be done in a more intentional and careful way.</p>
+
+<p>Reliably sending emails is a core piece of our application. When we don’t send out emails, we aren’t recording data that our customers use to help them understand their team morale and they lose trust us. Causing someone to contact support to ask about why their emails were not delivered is a bad experience and something we aim to avoid.</p>
+
+<p>We will use this incident as an opportunity to improve. Thank you for your continued support, please contact me directly if you have any additional questions.</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2016/11/03/closing-down-a-product.html">Closing Down a Product, Gracefully</a></li>
+          
+        
+          
+            <li><a href="/blog/2016/09/26/adventures-in-content-marketing.html">Adventures in Content Marketing</a></li>
+          
+        
+          
+            <li><a href="/blog/2016/08/05/a-live-chat-experiment.html">A Live Chat Experiment</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

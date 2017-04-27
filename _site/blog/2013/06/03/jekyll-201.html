@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Jekyll 201: Beyond Hello World</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2013/06/03/jekyll-201.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Jekyll 201: Beyond Hello World
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>June 03, 2013</span>
+    
+  </p>
+
+  <div id="post"><p>There is <a href="http://benhowdle.im/2013/06/02/jekyll-in-15-minutes/">plenty of material</a> <a href="http://destroytoday.com/blog/hello-world-im-jekyll/">online showing you</a> how to 
+<a href="http://danielmcgraw.com/2011/04/14/The-Ultimate-Guide-To-Getting-Started-With-Jekyll-Part-1/">setup a Jekyll blog</a>, <a href="http://ianreah.com/2012/12/27/An-introduction-to-Jekyll.html">write your first post</a> and 
+<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">add a custom domain</a>. But rarely do these tutorials go past
+the <a href="https://github.com/burkemw3/Heroku-Jekyll-Hello-World">“Hello World” stage</a>.</p>
+
+<p>So it’s time for Jekyll 201!</p>
+
+<p>I’ve been using Jekyll for blogs, meetup groups, prototyping, and microsites for
+nearly 3 years so I wanted to share some more advanced techniques that aren’t
+covered in the docs.</p>
+
+<h2 id="partials">Partials</h2>
+<p>The basics of partials (<code class="highlighter-rouge">includes</code> in Jekyll parlance) are covered in the 
+docs: <a href="http://jekyllrb.com/docs/templates/#includes">http://jekyllrb.com/docs/templates/#includes</a></p>
+
+<p>If you are coming from a traditional web development background, you might want
+to know how to pass in data to a partial. Maybe you have some book 
+recommendations in your sidebar, like so:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"book-recommendations"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"recommendation"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/img/pragmatic-programmer.png"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://pragprog.com"</span><span class="nt">&gt;</span>Pragmatic Programmer<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;span&gt;</span>My favorite book about programming pragmatically<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"recommendation"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/img/getting-real.png"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://gettingreal.37signals.com"</span><span class="nt">&gt;</span>Getting Real<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;span&gt;</span>A book about Getting Real and stuff...<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+</div>
+
+<p>You can make a partial (e.g. <code class="highlighter-rouge">_includes/recommendation.html</code>) so you aren’t 
+copy-pasting HTML code:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"recommendation"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"{{ img_url }}"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ url }}"</span><span class="nt">&gt;</span>{{ name }}<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;span&gt;</span>{{ summary }}<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/li&gt;</span></code></pre></figure>
+
+<p>And then use it like so:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">ul</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"book-recommendations"</span><span class="o">&gt;</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="n">img_url</span> <span class="o">=</span> <span class="s2">"/img/pragmatic-programmer.png"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="n">url</span> <span class="o">=</span> <span class="s2">"http://pragprog.com"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">"Pragmatic Programmer"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="n">summary</span> <span class="o">=</span> <span class="s2">"My favorite book about programming pragmatically"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% include </span><span class="n">recommendation</span><span class="p">.</span><span class="nf">html</span> <span class="sx">%}
+
+  {% assign img_url = "/img/getting-real.png" %}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="n">url</span> <span class="o">=</span> <span class="s2">"http://gettingreal.37signals.com"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">"Getting Real"</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% assign </span><span class="n">summary</span> <span class="o">=</span> <span class="s2">"A book about Getting Real and stuff..."</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="sx">% include </span><span class="n">recommendation</span><span class="p">.</span><span class="nf">html</span> <span class="sx">%}
+&lt;/ul&gt;</span></code></pre></figure>
+
+<p>We can re-use the HTML template but this is still not so great. Liquid doesn’t 
+have the ability to pass in a hash of local objects (like in Rails), instead we 
+have to rely on essentially global variables.</p>
+
+<h2 id="abusing-_configyml">Abusing <code class="highlighter-rouge">_config.yml</code></h2>
+<p>A better way to handle the above case of book recommendations is to store the
+underlying data in <code class="highlighter-rouge">_config.yml</code>. This file is typically used to store configuration
+options for Jekyll, but any extra YAML data you put in <code class="highlighter-rouge">_config.yml</code> will be 
+accessible in templates via the <code class="highlighter-rouge">site</code> variable.</p>
+
+<p>So the <code class="highlighter-rouge">_config.yml</code> would look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># General Jekyll Config
+auto: true
+pygments: true
+exclude: [".gitignore", "readme.md", "Gemfile", "Gemfile.lock"]
+
+# Book recommendations
+recommendations:
+  - img_url: /img/pragmatic-programmer.png
+    url: http://pragprog.com
+    name: Pragmatic Programmer
+    summary: |
+      My favorite book about programming pragmatically
+
+  - img_url: /img/getting-real.png
+    url: http://gettingreal.37signals.com
+    name: Getting Real
+    summary: |
+      A book about Getting Real and stuff...
+</code></pre>
+</div>
+
+<p>Caveats: changes to this file are not picked up when running Jekyll locally with
+the <code class="highlighter-rouge">--auto</code> flag, so you need to regenerate the site manually for changes to
+take effect (several hours of my life I will never get back).</p>
+
+<p>Make sure all of your data is valid YAML (here is a good <a href="http://yamllint.com/">linter</a>).</p>
+
+<p>Then in your template, you can loop over all the book recommendations.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">ul</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"book-recommendations"</span><span class="o">&gt;</span>
+  <span class="p">{</span><span class="sx">% for </span><span class="n">recommendation</span> <span class="k">in</span> <span class="n">site</span><span class="p">.</span><span class="nf">recommendations</span> <span class="sx">%}
+    {% include recommendation.html %}</span>
+  <span class="p">{</span><span class="sx">% endfor </span><span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/ul&gt;</span></code></pre></figure>
+
+<p>And update the partial to use properties on <code class="highlighter-rouge">recommendation</code>…</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"recommendation"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"{{ recommendation.img_url }}"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ recommendation.url }}"</span><span class="nt">&gt;</span>{{ recommendation.name }}<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;span&gt;</span>{{ recommendation.summary }}<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/li&gt;</span></code></pre></figure>
+
+<p>Much better! And now, when you want to add a new book, just add it to the list
+in <code class="highlighter-rouge">_config.yml</code> and it will get rendered when you regenerate the site.</p>
+
+<p>I’ve used this technique several times with success, here are a few examples:</p>
+<ul>
+  <li><a href="http://indystartuplab.org">Indy Startup Lab</a>: listing the members and projects, <a href="https://github.com/IndyStartupLab/indystartuplab.org">repo here</a></li>
+  <li><a href="http://letsworkhappier.com">Let’s Work Happier</a>: microsite with app directory, <a href="https://github.com/sep/letsworkhappier.com">repo here</a></li>
+</ul>
+
+<h2 id="adding-extra-fields-to-posts">Adding extra fields to posts</h2>
+<p>Pages have some default attributes that you can set in the <a href="http://jekyllrb.com/docs/frontmatter/">Front-matter</a>;
+these include the basics like permalink, title, categories, and tags.</p>
+
+<p>But you are not limited to just these fields. You can add any arbitrary data to
+the Front-matter (it is just a block of YAML after all) and they will be exposed
+on the <code class="highlighter-rouge">page</code> variable.</p>
+
+<p>Let’s say you write reviews on your blog sometimes and use Amazon Affiliates. Per
+the affiliate guidelines, you need a disclaimer on your post stating that you
+are participating in the program or the FCC will get mad.</p>
+
+<p>You could copy and paste it to the bottom of each Markdown post — but a better
+way would be to set a custom attribute in the Front Matter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+layout: post
+title: "My Favorite Gadgets Reviewed"
+disclaimer: true
+---
+</code></pre>
+</div>
+
+<p>By adding <code class="highlighter-rouge">disclaimer</code> to the Front-matter, we can use <code class="highlighter-rouge">page.disclaimer</code> in the
+<code class="highlighter-rouge">post</code> layout to display our affiliate text at the bottom of the post when
+necessary.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  {% if page.disclaimer %}
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"disclaimer"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Disclaimer: Matt Swanson is a participant in the Amazon Services LLC 
+        Associates Program, an affiliate advertising program designed to provide 
+        a means for sites to earn advertising fees by advertising and linking 
+        to amazon.com
+      <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  {% endif %}</code></pre></figure>
+
+<p>This technique is pretty powerful, here a few other ideas you can use it for:</p>
+<ul>
+  <li><a href="http://www.lostdecadegames.com/blog-author-attribution-using-jekyll/">Author attribution</a>: useful for multiple author blogs/sites</li>
+  <li>Enable/disable Disqus/LiveFyre comments on a per-post basis</li>
+  <li>Add summary, subtitles, per-post header images</li>
+  <li>Display a banner for your new startup at the bottom of posts</li>
+</ul>
+
+<h2 id="ghetto-asset-pipeline">Ghetto Asset Pipeline</h2>
+<p>A little trick I picked up from the <a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">DevelopmentSeed blog</a> — you can use
+<code class="highlighter-rouge">includes</code> to concatenate your CSS files.</p>
+
+<p>Move your CSS files into the <code class="highlighter-rouge">_includes</code> folder (I like to put them in a <code class="highlighter-rouge">css</code>
+sub-folder). Then make an <code class="highlighter-rouge">all.css</code> file with an empty Front Matter, here is the
+one from the blog you are currently reading.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+---
+{% include css/font-awesome.css %}
+{% include css/base.css %}
+{% include css/skeleton.css %}
+{% include css/screen.css %}
+{% include css/layout.css %}
+{% include css/syntax.css %}
+</code></pre>
+</div>
+
+<p>Voilà! Six asset requests down to one!</p>
+
+<h2 id="custom-plugins">Custom Plugins</h2>
+<p>The new Jekyll docs have a great section on <a href="http://jekyllrb.com/docs/plugins/">writing plugins</a> with several
+examples so I won’t dive into it here.</p>
+
+<p>Be warned — you cannot use custom plugins with GitHub pages. I am of the opinion
+that GitHub pages is a huge benefit to using Jekyll, so be careful about relying
+on plugins.</p>
+
+<p>Often times you can reproduce the functionality with Javascript or a Modular
+Component (see below). Personally, whenever I reach for a custom plugin I step
+back and evaluate whether I really need the functionality at all — usually the
+answer is no.</p>
+
+<h2 id="building-modular-components">Building Modular Components</h2>
+<p>Static sites, by design, are very limited. In a world where you can build an
+entire business on a WordPress blog, Jekyll seems very simplistic.</p>
+
+<p>For the most part, I think this is good — I believe in putting the emphasis back
+on content. But there are times when you miss some of the conveniences of heavier
+content platforms.</p>
+
+<p>You can add some of this functionality back by using Modular Components. The 
+basic concept is to write smaller services that your blog can interact with. By
+offloading the backend work to other apps you can get around some of the limits
+of a static site.</p>
+
+<p>The most discussed example is using a 3rd party comment system — so I will skip
+that. Two other use cases that I think are more interesting are an email form
+and a web-based post editor.</p>
+
+<p>For the email form, I created a simple <a href="https://github.com/indy-software-artisans/jekyll-mailer">Ruby app</a> that accepts
+cross-domain POSTs and sends emails to the officer list for a local meetup. The
+Jekyll site just serves up the form with the action pointing to the mailer
+app. Not perfect, but certainly better than setting up a whole CMS.</p>
+
+<p><a href="http://developmentseed.org/blog/2012/june/25/prose-a-content-editor-for-github/">Prose</a> is an app that allows you to edit and create posts on GitHub
+pages with a web interface by connecting to the GitHub API. I personally still
+stick with the command line and SublimeText for writing my posts, but those of
+you that miss having a WYSIWYG web editor for your content should check out
+Prose.</p>
+
+<hr />
+
+<p>Are there more Jekyll topics you want to see covered? Hit me up on 
+<a href="https://twitter.com/_swanson">Twitter</a>.</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

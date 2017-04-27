@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Engineering a First Run Experience</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2013/08/10/engineering-a-first-run-experience.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Engineering a First Run Experience
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#delightful_products">delightful products</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        August 10, 2013
+      </span>
+    
+  </p>
+
+  <div id="post"><p>First impressions are important. I spent a lot of time thinking about the first 
+run experience for <a href="https://github.com/swanson/stringer">Stringer, my RSS reader</a>.</p>
+
+<h2 id="it-starts-at-the-source">It starts at the source</h2>
+
+<p>Stringer is an open source project and you self-host your own instance of it. So
+the first run really starts before someone even installs the app. It starts on
+the <a href="https://github.com/swanson/stringer">GitHub page</a>.</p>
+
+<p>I wrote about it in <a href="http://mdswanson.com/blog/2013/07/19/getting-traction-for-your-open-source-project.html">more detail before</a>, but on GitHub the README is
+everything. It is like the landing page of a traditional product. You need a
+clear value proposition, screenshots, and a call-to-action (in this case, 
+<code class="highlighter-rouge">git clone</code> and deploy to Heroku).</p>
+
+<p>The installation instructions should be kept as concise as possible, while still
+being thorough. If the user can’t get the app up and running without problems,
+they are likely to just bail. Run through your setup instructions from a clean
+slate, multiple times if you need to.</p>
+
+<p>Onward to the actual app!</p>
+
+<h2 id="require-the-minimum-amount-of-input">Require the minimum amount of input</h2>
+
+<p>Most apps start off with registration. You can experiment with a demo mode or
+some kind of trial account, but I prefer to just ask for the minimum amount of
+information up front and fill in blanks as you go.</p>
+
+<p>For Stringer, the minimum thing I need is a password. Originally, I asked for
+an email address, but since Stringer is a single-user app, there is no need. If
+I were to go back, I would kill the password confirmation too. 95% of the time,
+the confirmation will match and if it doesn’t they can always reset the password.</p>
+
+<p><a href="http://localhost:4000/static/stringer_pw_setup.png"><img src="http://localhost:4000/static/stringer_pw_setup_thumb.png" alt="" /></a></p>
+
+<p>The first page also sets the tone of the app — for Stringer, this means 
+short, to-the-point copy and an emphasis on the opinionated decisions of the app.</p>
+
+<h2 id="welcome-aboard">Welcome aboard</h2>
+
+<p>As you can imagine, the next piece of information I need is the list of RSS
+feeds you want to read. The target audience for Stringer knows what an RSS feed
+is and is comfortable with technical language like “importing”. Tailor your
+on-boarding language to the end-user.</p>
+
+<p><a href="http://localhost:4000/static/stringer_welcome_aboard.png"><img src="http://localhost:4000/static/stringer_welcome_aboard_thumb.png" alt="" /></a></p>
+
+<p>There are some small touches that improve the user experience here. 90% of the
+users were coming from Google Reader when the project launched, so there is a
+direct link that, when clicked, will export your Google Reader subscriptions 
+(assuming you are logged in). I should probably change this now that new users
+might be coming from Feedly, Newsblur, etc.</p>
+
+<p>Another noteworthy item is the “Not now” button. Give the user a way to skip
+through any steps that aren’t strictly necessary — just make sure you give
+them a way to add the information later on.</p>
+
+<h2 id="time-to-delight">Time to delight</h2>
+
+<p>So far all of this stuff is kind of standard, but now I can really turn on the
+magic.</p>
+
+<p>You might have heard about the “blank slate” or “empty state” of your app, right?</p>
+
+<p>Basically, we usually think about how the app works when there is data in it.
+For an RSS reader, this means you have a bunch of subscriptions, a bunch of 
+stories, some things are read, some are unread, the user knows what all the
+buttons do.</p>
+
+<p>This is because, as a developer, you spend most of your time working on the app
+with all the data loaded in. But for the user, they are starting from scratch.</p>
+
+<p>It would be great if the first time you open up Stringer, you see your stories.
+It lets you know that everything is working and you can dive in right away. But
+there is a problem. It takes some time to parse all of your feeds to load in
+your initial stories.</p>
+
+<p>I could just let the import page spin for 2 minutes while the app pulls down 
+all your feeds, but that is a poor experience. Instead, I can fill that time with 
+something useful, like explaining how the app works.</p>
+
+<p><a href="http://localhost:4000/static/stringer_tutorial.png"><img src="http://localhost:4000/static/stringer_tutorial_thumb.png" alt="" /></a></p>
+
+<p>I added a background job to start parsing the imported feeds and then take the
+user to an interactive instruction manual. Turn a technical problem (feeds take
+a few minutes to parse) into a delightful experience (play around with sample
+stories).</p>
+
+<p>This page was really fun to create. I drew some arrows and used a handwritten
+<a href="http://www.google.com/fonts/specimen/Reenie+Beanie">Google Web Font</a> to create the annotated layover. This is a fun way to 
+show the user what all the buttons do and only took about an hour to implement.</p>
+
+<p>Notice the sample stories. They are cheeky little parodies of the type of feeds
+that would be popular among Stringer’s target audience (tech-savvy readers).</p>
+
+<p><a href="http://localhost:4000/static/stringer_tutorial_2.png"><img src="http://localhost:4000/static/stringer_tutorial_2_thumb.png" alt="" /></a></p>
+
+<p>And everything works just like the real app, you can open a story, use the
+keyboard shortcuts, click the other buttons. When you open a story, it is filled
+with a few paragraphs of <a href="http://hipsteripsum.me/">Hipster Ipsum</a> (way better than Lorem!) and a 
+kitten pic from <a href="http://placekitten.com/">Placekitten</a>.</p>
+
+<p>The bottom line is that I need to distract the user for at least 30 seconds so
+the app can fetch them some stories. But at the same time, I can teach them 
+how to use the app and (hopefully…) make them chuckle at the fake headlines.</p>
+
+<p><a href="http://localhost:4000/static/stringer_tutorial_3.png"><img src="http://localhost:4000/static/stringer_tutorial_3_thumb.png" alt="" /></a></p>
+
+<p>I used a simple <code class="highlighter-rouge">setTimeout()</code> JavaScript call to show a “Start Reading” button
+after 10 seconds.</p>
+
+<h2 id="now-youre-in">Now you’re in!</h2>
+
+<p><a href="http://localhost:4000/static/stringer_home.png"><img src="http://localhost:4000/static/stringer_home_thumb.png" alt="" /></a></p>
+
+<p>Now the user enters the app to find it already filled with stories. I made the
+decision to only grab stories that were published in the past 24 hours, it makes
+it faster to parse the feed and the user doesn’t end up with 500 unread items.</p>
+
+<p>On the backend, I toggle a flag that the user has completed the setup, so that
+every time they use the app from now on, I take them straight to the news feed
+instead of through the tutorial again.</p>
+
+<p>The time from cloning the repository to reading your own feeds on Stringer is
+less than 10 minutes. None of the setup seemed like work, I didn’t make the
+user link their Google Account or enter a bunch of feed URLs.</p>
+
+<p>But more importantly, the user had a great experience setting up the app.</p>
+
+<p><img src="http://localhost:4000/static/stringer_tweet_1.png" alt="" />
+<img src="http://localhost:4000/static/stringer_tweet_2.png" alt="" />
+<img src="http://localhost:4000/static/stringer_tweet_3.png" alt="" />
+<img src="http://localhost:4000/static/stringer_tweet_4.png" alt="" /></p>
+
+<hr />
+
+<p>It is easy to focus on building cool features, but if you can’t get them past
+the setup, the user will never get to see any of your hard work.</p>
+
+<p>Even though the first run only happens once, it can make or break your app so 
+give it some love!</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2017/02/14/why-machine-learning-is-interesting.html">Software ate the world</a></li>
+          
+        
+          
+            <li><a href="/blog/2013/10/14/how-not-to-validate-email-addresses.html">How not to validate email addresses</a></li>
+          
+        
+          
+            <li><a href="/blog/2013/09/30/crappy-emails-make-me-sad.html">Crappy emails make me sad</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

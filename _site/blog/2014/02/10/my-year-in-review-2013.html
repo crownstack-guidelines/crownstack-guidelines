@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - My Year in Review: 2013</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2014/02/10/my-year-in-review-2013.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    My Year in Review: 2013
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#reflections">reflections</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        February 10, 2014
+      </span>
+    
+  </p>
+
+  <div id="post"><p>I’ve done a yearly writeup for the past two years. I always struggle to
+reflect and look back on what I’ve done, so writing this post is almost
+therapeutic. It’s the middle of February, but hey, better late than never.</p>
+
+<h1 id="work-projects">Work Projects</h1>
+
+<p>I started 2013 working on an embedded wireless lock system 
+for a security company. I am hopelessly out of my comfort zone when it comes
+to embedded C or hardware, so luckily I was mainly working on a Ruby web app
+that ran on Linux on a microcontroller. You know those Linksys configuration
+pages where you go to forward ports and stuff? Basically, I built that but for
+technicians to setup wireless security systems.</p>
+
+<p>It was a difficult project with a tight deadline, but it was neat to work on
+a physical product that you can actually go buy in a store. The team was large
+(around 15 developers at the peak) so there were struggles with planning and
+coordinating, but overall, the team has pleasant to work with and came together
+to get the product shipped.</p>
+
+<p>I continued working with <a href="https://twitter.com/mumau">Mike</a> on <a href="/morale/">MoraleApp</a>, building new features and doing
+support for our [slowly] expanding base of users. One of the biggest
+issues we have is answering the question of “what do I do with this data?” so
+I spent some time writing some general “tips” and making them show up when a
+team isn’t doing great.</p>
+
+<p>Mike and I both struggled with momentum on MoraleApp; we both have other duties so
+it makes it tough to try to build a product at the same time. And when we did
+manage to get a bit of bandwidth, we struggled with figuring out what to do next.
+MoraleApp has been our own little crash course in product development.</p>
+
+<p>I sound down on MoraleApp, but it is still chugging along with
+minimal support needed. We’ve signed up over 100 companies and have logged over
+70,000 daily moods — still pretty amazing to me since I built Version 1 in
+one weekend.</p>
+
+<p>I filled the rest of my year was odds and ends: helping upgrade a legacy
+Rails app (on a weird stack of jRuby and IIS…), doing a few estimates for
+mobile work, and a full fledged story mapping and discovery session for a web
+app.</p>
+
+<p>The summer months brought an influx of new employees — both new hires
+fresh out of school and this year’s crop of interns. It’s great to see some
+new faces, but sometimes hard to find projects for everyone to work on. I
+noticed a couple new engineers had been left to fend for themselves doing
+maintenance on an internal tool. Several years ago, the company built an app
+called “Corporate Resume” that tracks all the projects SEP has done, what
+technologies were used, who worked on them, etc; it comes in handy for
+marketing and business development.</p>
+
+<p>I ended up joining two newbies and we gutted the aging project; bringing in
+some newer technologies and making sure that the new app would not easily fall
+into disrepair. The old project had lots of baggage so we re-branded the project
+as “Chops” — a tool for tracking the development chops of the company.</p>
+
+<p>I think the jury is still out on adoption of the tool among the engineers, but 
+the project was fun and a great way for me to introduce SEP engineering culture
+to a pair of bright, new developers.</p>
+
+<p>As fall rolled around, I finally found some billable work — building an
+Android app for a local credit union. It had been almost 2 years since I last
+did Android, but I was excited to dive back in — especially after seeing the
+improvements to the developer ecosystem (mainly testing, yah!).</p>
+
+<p>This is (the project is still ongoing) my first project as a Tech Lead 
+— meaning that I was in charge of picking tools for the team, doing 
+system architecture type stuff, and generally trying to help the team build 
+awesome software. It’s been a challenge to try to clear paths and build
+scaffolding so that the other team members can be more productive, but it’s been
+fun to be able to have a large say in how our code base grows.</p>
+
+<p>I’m really pleased with our current testing setup. We’ve got a full suite of
+unit tests and then a nifty setup where we can run automated tests on seven
+different devices on every commit. Compared to my last Android project (with
+two full time testers running hundred page test plans), our approach is miles
+ahead and has made working with Android much more enjoyable.</p>
+
+<h1 id="side-projects">Side Projects</h1>
+
+<h3 id="stringer-an-anti-social-rss-reader">Stringer, an anti-social RSS reader</h3>
+<p>In March, I wrote my own RSS reader with Ruby and Sinatra because Google Reader
+was shutting down. I didn’t like any of the other solutions and wanted something
+I could just spin up on Heroku; apparently so did a bunch of other people. With
+over two thousand stars on Github, contributions from over 60 people, and being
+translated to 15 languages, Stringer has been my most successful open source
+project to date.</p>
+
+<p><img src="https://github.com/swanson/stringer/raw/master/screenshots/instructions.png" alt="" /></p>
+
+<p><a href="https://github.com/swanson/stringer">Stringer</a> is mostly in maintenance mode now. It does what I want it to and
+works for most people’s needs. I brought on a contributer to help maintain the
+project and I still get a few issues/pull requests a month.</p>
+
+<h3 id="capuchin-jekyll-for-mailchimp-newsletters">Capuchin, Jekyll for Mailchimp newsletters</h3>
+<p>I wrote a ton of newsletters this year (more on that later) and as much as I
+love Mailchimp, I really hate their WYSIWYG editor. I write in Markdown, dammit!
+None of this rich text crap!</p>
+
+<p>I wrote a <a href="https://github.com/swanson/capuchin">simple gem</a> that mimics Jekyll (my blogging tool of choice) and allows
+me to write content in Markdown and then creates the newsletter via the Mailchimp
+API. It is especially helpful for text-heavy posts.</p>
+
+<p>This was my first gem that I published on Rubygems.org and it was a good learning 
+experience. I hadn’t built many command line tools before so it was interesting 
+to dive into the source code of other tools and see how they do things.</p>
+
+<h3 id="gem-license-checker-insert-gemfile--output-list-of-license">Gem License Checker, insert Gemfile =&gt; output list of license</h3>
+<p><a href="https://github.com/swanson/gem-license-checker">Gem License Checker</a> was kind of a dud. I built it during one of the SEP Startup 
+Weekend events because we had a very small need for it on a work project. Ultimately, it
+wasn’t super useful and didn’t get much use. Oh well.</p>
+
+<p><img src="http://i.imgur.com/EqHftgT.png" alt="" /></p>
+
+<h3 id="triplico-share-youtube-videos-with-small-groups">Triplico, share YouTube videos with small groups</h3>
+<p><a href="https://github.com/swanson/triplico">Triplico</a> was <em>definitely</em> a dud. I got a case of the weekend hack madness
+and decided to solve the very important problem of how to share YouTube videos
+with my siblings. I had been pasting lots of videos into IM conversations
+and text messages and thought “THEY HAS TO BE A BETTER WAY!”. And then I started
+thinking about how arbitrary limitations affect product design (140 characters
+on Twitter, 6 seconds on Vine, etc) so I built an app that lets you share videos,
+but only with two other people.</p>
+
+<p><img src="https://raw.github.com/swanson/triplico/master/app/public/img/demo.png" alt="" /></p>
+
+<p>This was a big flop, I didn’t even use it once after it was built!</p>
+
+<h3 id="lagom-a-blog-theme-with-just-the-right-amount-of-style">Lagom, a blog theme with just the right amount of style</h3>
+<p>I extracted <a href="https://github.com/swanson/lagom">the theme</a> from my Jekyll blog (the one you are reading right now),
+gave it a cool Swedish name, and put it on <a href="http://jekyllthemes.org/">jekyllthemes.org</a> for others to use.</p>
+
+<p><img src="http://i.imgur.com/CT2Xvug.png" alt="" /></p>
+
+<p>It’s gotten around 50 stars and 70 forks and I’ve seen a few blogs in the wild
+that are using it, so that’s cool. I’m happy to give back after ripping off of
+Tom Preston-Werner’s theme for so long. I really wish Jekyll had a better standard
+for themes, I’d probably release a few more if it was a bit easier.</p>
+
+<h3 id="greyhouse-online-store">Greyhouse Online Store</h3>
+<p>I helped build an <a href="http://greyhousecoffee.com/">online store</a> for a coffee shop at my alma mater with a <a href="https://twitter.com/kyleashipley">friend</a>. It
+originally started as a Rails rescue project, but we ended up just using Shopify
+with a bunch of custom Liquid templates.</p>
+
+<h3 id="freedom-registry">Freedom Registry</h3>
+<p>Another small freelance project I helped out with; this one involved building out
+some user profile features in a Rails app that helps 
+<a href="http://freedomcollaborative.org/">anti-human trafficking organizations share resources</a>. It was interesting working in a 
+remote, asynchronous style (I worked in the evenings, the rest of the team during the day).</p>
+
+<h1 id="writing">Writing</h1>
+
+<p>Things kept chugging along on this blog. I wrote 37 posts in 2013, more than 2011
+and 2012 combined. I wrote almost weekly from May to September. Page views were up
+33% over last year.</p>
+
+<p><img src="http://localhost:4000/static/2013-blog-stats.png" alt="2013 Blog Stats" /></p>
+
+<p>The top three posts in terms of views:</p>
+
+<ul>
+  <li><a href="http://mdswanson.com/blog/2013/01/20/worst-bug-ever.html">Worst. Bug. Ever.</a> (44,624)</li>
+  <li><a href="http://mdswanson.com/blog/2013/08/11/write-things-tell-people.html">Do things, write about it</a> (35,822)</li>
+  <li><a href="http://mdswanson.com/blog/2013/10/14/how-not-to-validate-email-addresses.html">How not to validate email addresses</a> (13,779)</li>
+</ul>
+
+<p>My three favorite posts I wrote:</p>
+
+<ul>
+  <li><a href="http://mdswanson.com/blog/2013/08/11/write-things-tell-people.html">Do things, write about it</a></li>
+  <li><a href="http://mdswanson.com/blog/2013/05/29/the-30-second-standup.html">The 30 Second Standup</a></li>
+  <li><a href="http://mdswanson.com/blog/2013/05/02/expanding-contracting.html">Expanding and Contracting</a></li>
+</ul>
+
+<p>I started writing two newsletters in 2013: a monthly newsletter under the <a href="http://indyhackers.org/">Indy Hackers</a>
+branding and a (now-defunct) weekly newsletter about building awesome software.</p>
+
+<p><a href="http://us6.campaign-archive2.com/home/?u=244b5370d41b5cf4146ec517c&amp;id=b51f983563">Hacks &amp;&amp; Happenings</a> is a monthly newsletter that features projects, meetups, and blog
+posts related to developers in Indiana. I co-run this with my good buddy <a href="https://twitter.com/mileszs">Miles</a>; he
+helps me collect links and I do the monthly writeup. That list is up to 130 readers,
+with a 65% open-rate and is going strong.</p>
+
+<p><a href="http://us5.campaign-archive1.com/home/?u=42197992359c6140b24ce0046&amp;id=ee7084f978">Building Awesome Software</a> was a weekly newsletter that I started in Septemeber. I wrote
+9 issues on software topics that were interesting to me; a bit of UX, a bit of testing,
+a bit of ranting. I was heavily inspired by <a href="http://nickd.org/">Nick Diasboto’s weekly newsletter</a>, but 
+ultimately I ran out of steam (and topics) and haven’t posted to the list since November.
+It was an interesting experience in trying to build an audience from zero (I got it up
+to 150 pretty quickly).</p>
+
+<p>I really like writing, but my desire to write comes in spurts (part of the reason why this
+yearly writeup is 2 months late…) so it’s been a bit of a personal quest to figure out
+how to best harness my enthusiasm.</p>
+
+<h1 id="random-highlights">Random Highlights</h1>
+
+<p>I started a <a href="http://itttl.org/">table tennis league</a> for local tech companies. So far, we’ve played two other
+companies in a home-and-home series and are 1-1 overall. Table tennis has become my go-to
+“I need a quick break” activity and it’s been funny to see people at work start getting
+serious and buying their own gear.</p>
+
+<p>I attended <a href="http://scna.softwarecraftsmanship.org/">SCNA</a> for the second year in a row; it was a great event again. This time I got
+to go on the company dime and do a bit of business development (which for developers just
+means talking to other developers). We ended up taking a small group up so there was plenty of 
+interesting discussions and a built-in social group to hang out with. I high-fived 
+<a href="https://twitter.com/garybernhardt">Gary Bernhardt</a> and <a href="https://twitter.com/kytrinyx">Katrina Owen</a>, so my life is only going to go downhill from here.</p>
+
+<p>I deleted my [dormant] Facebook account and started sending a quarterly email update to the
+handful of people I still wanted to keep in touch with. I really like writing emails apparently.</p>
+
+<p>I got promoted over the summer; I was very fortunate to have a wide variety of projects in my 
+time at SEP thus far and to learn from some great people. My career has followed a simple 
+loop: seek out opportunities, demonstrate competence, reflect, improve, and be rewarded with 
+more opportunities.</p>
+
+<h1 id="new-year-new-ideas">New year, new ideas</h1>
+
+<p>The most interesting new ideas I came across in the past year — and ones I hope
+to incorporate more into my life:</p>
+
+<ul>
+  <li><a href="http://www.alfiekohn.org/books/pbr.htm">Punished by Rewards</a>: Rewards harm intrinsic motivation, our workplace culture
+is full of shallow “reward schemes” that ultimately fail when external rewards are removed. Finding 
+out why people are not intrinsically motivated is way harder, but much better in the long run.</li>
+</ul>
+
+<ul>
+  <li><a href="http://calnewport.com/books/so-good/">So Good They Can’t Ignore You</a>: Stop feeling bad because you haven’t “found your passion”. Focus
+on getting better and great work will follow. Satisfaction with work comes from autonomy and skill,
+not free lunches and beanbag chairs.</li>
+</ul>
+
+<ul>
+  <li><a href="http://www.dilbert.com/blog/entry/goals_vs_systems/">System thinking over goals</a>: Setting goals is for suckers. They make you feel bad until you
+hit the goal (or fail and feel worse) and then you lose purpose. After accidentally using systems
+thinking in 2012 and getting away from it in 2013, I am fully back on board for systems in 2014.</li>
+</ul>
+
+<ul>
+  <li><a href="http://jobstobedone.org/">Jobs-to-be-Done</a>: The “milkshake phenomenon” is incredibly interesting to me. Probably because it’s
+a classic “Turns out…” reveal, but I think this concept has legs. Not sure how, but I’d like to
+try out some of the approaches in JTBD this year.</li>
+</ul>
+
+<ul>
+  <li>Inspiration from outside software: two non-technical disciplines really captured my
+attention. The first was a <a href="http://mdswanson.com/blog/2013/11/11/how-buildings-learn-and-why-software-is-no-different.html">great mini-series</a> about the process of designing buildings and how 
+they grow and change through usage. The second was a talk about <a href="http://www.youtube.com/watch?v=ShEez0JkOFw">hand tool woodworking</a> (okay, 
+this was from 2014 so I’m cheating…). There was something so visceral and tangible about physical
+buildings and furniture that interests me. Not sure where that interest might go, but excited to see.</li>
+</ul>
+
+<h1 id="closing-thoughts">Closing Thoughts</h1>
+
+<p>Do things that <a href="http://www.codusoperandi.com/posts/increasing-your-luck-surface-area">increase your luck surface area</a>. But don’t take yourself <a href="http://i.imgur.com/7OxwL.gif">too seriously</a>.</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2014/06/29/meditations-on-software.html">Personal Meditations on Software</a></li>
+          
+        
+          
+        
+          
+            <li><a href="/blog/2013/05/02/expanding-contracting.html">Expanding and Contracting</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

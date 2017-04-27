@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - What's in my Side Project Queue?</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2012/03/01/my-side-project-queue.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    What's in my Side Project Queue?
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>March 01, 2012</span>
+    
+  </p>
+
+  <div id="post"><p>I usually have two or three side projects that I’m hacking on at any given
+time. I’ve tried sticking to one, but I like having a few options that I can
+hop between.</p>
+
+<p>I’m winding down one project I’ve been working on for a few weeks 
+(<a href="https://github.com/sep/planning-poker-android">an Android app for doing planning poker</a>) which means it’s time to reach into my
+giant bag of projects and pull something out.</p>
+
+<p>One thing I’ve been meaning to do more of is collaboration - with both people
+in Indianapolis and across the web. So I figured I’d toss out my current
+list of project ideas. If any of them sound cool to you and you want to work 
+on it together (which would be totally awesome!), get in touch with me.</p>
+
+<p>#Project Queue (in no particular order)</p>
+
+<p>Working title: <code class="highlighter-rouge">garage-sailor</code>  <br />
+Quick pitch: find local garage sales on your phone; use Craigslist or
+other API to seed data; web app to list your own sales ($$$) and phone app to
+browse the sales and get directions  <br />
+Potential Stack: MongoDB (geospatial index), <a href="http://mapbox.com/tilemill/">TileMill</a>, <a href="http://leaflet.cloudmade.com/">Leaflet.js</a></p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">merlin</code>  <br />
+Quick pitch: “presentation magic”; I like writing slides in Markdown, but I
+don’t really like ShowOff; 98% of my slides fit into 3 templates 
+(large centered text, full screen image, bulleted list) that’s all I want to
+support; provide a standard markup for theming and leverage one of the many
+Javascript slide libraries  <br />
+Potential Stack: Ruby (DSL?), Markdown, <a href="http://imakewebthings.github.com/deck.js/">Deck.js</a></p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">coder.fm</code>  <br />
+Quick pitch: daily, customizable “radio show” centered around dev/tech news;
+pull down RSS or other trigger-based data to build a “script” then run it
+through text-to-speech to produce a 5-10 min audio file for the morning 
+commute  <br />
+Potential Stack: RSS parser, cron, <a href="http://osxdaily.com/2011/05/15/mac-os-x-lion-new-text-to-speech-voices-samples/">Lion TTS</a>, <a href="http://tomclegg.net/mp3cat">mp3cat</a>, S3</p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">git-tickets</code>  <br />
+Quick pitch: clone of Github Issues as a stand-alone bug tracker with tight
+integration with git ($$$); the anti-TFS/Jira  <br />
+Potential Stack: Backbone.js, <a href="http://schacon.github.com/git/git-notes.html">git-notes</a>, <a href="https://github.com/mojombo/grit">grit</a>, pretty CSS3/HTML5 stuff</p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">pomojournal</code>  <br />
+Quick pitch: I’m really into the whole <a href="http://quantifiedself.com/">Quantified Self</a> stuff at the moment,
+so I’ve started tracking my project work using the Pomodoro technique; this 
+idea is a web-based journal that tracks my “poms” and has standard
+features like tagging, search, and a timeline; ideally would be integrated
+with a desktop tracking app  <br />
+Potential Stack: Rails, <a href="https://github.com/ugol/pomodoro">pomodoro</a> (Mac), <a href="https://github.com/ccidral/tomighty">tomighty</a> (Windows)</p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">hacker-stream</code>  <br />
+Quick pitch: Activity feed targeted towards the “modern developer or 
+designer”; aggregate actions from github, bitbucket, twitter, blog RSS, HN, 
+Dribbble, Forrst, etc etc into a single feed; inspired by Mark Pilgrim’s (now
+removed) “Firehose” page  <br />
+Potential Stack: <a href="http://ogp.me/">Open Graph</a>, various APIs</p>
+
+<hr />
+
+<p>Working title: <code class="highlighter-rouge">git-gradelevel</code>  <br />
+Quick pitch: Script that computes the <a href="http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_test">Flesch–Kincaid Grade Level</a> of each
+committer in a git repo; the ultimate way to passive-aggressively tell your
+teammates to stop writing shitty commit messages! “You write commit msgs
+like a 3rd grader!”  <br />
+Potential Stack: shell, readability algorithms</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

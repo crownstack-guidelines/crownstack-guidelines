@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Making a commit with the Github API</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2011/07/23/digging-around-the-github-api-take-2.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Making a commit with the Github API
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#worklog">worklog</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        July 23, 2011
+      </span>
+    
+  </p>
+
+  <div id="post"><p>The <a href="/blog/2011/07/09/digging-around-the-github-v3-api.html">last time I was playing around with the Github API</a> I was able to pull
+out all of the files and their contents for a given repository.</p>
+
+<p>The next task I want to be able to do was make a commit. The <a href="http://developer.github.com/v3/git/">process</a> looks
+fairly involved from the outside; you have to make the blob, find and update
+the trees and make the commit all manually. As mentioned on <a href="http://news.ycombinator.com/">HN</a>, the guys at
+Github <a href="http://news.ycombinator.com/item?id=2746877">acknowledged this was a pain point</a> and may introduce some helper methods
+like those used for creating and editing Gists.</p>
+
+<p>I was kind of dreading doing all the git internal stuff because, frankly,
+I am not an expert on it and it’s not exactly something I want to spend my weekend 
+debugging.</p>
+
+<p>But I found a <a href="https://github.com/plu/Pithub">Perl library</a> (which seems to be the first to support all of the v3
+methods) that has an example of making a commit. Between that sample code and
+the instructions on the API documentation, I felt like I had enough information
+to give it a solid attempt.</p>
+
+<p>###Letting myself do stuff to my own stuff on my own behalf</p>
+
+<p>So I started making a few calls to the API but I ended up realizing that I need
+to authenticate myself in order to do most of the POST operations. The API allows
+for you to send your username and password directly or use an OAuth token.</p>
+
+<p><em>Aside: I think Github could make it more clear which methods require authorization.
+Maybe I wasn’t looking in the right place, but it would have been helpful to have
+a little note saying “This method requires auth” below the “Create a blob” section.</em></p>
+
+<p>OAuth and I don’t get along at all, usually because I want to call the APIs from
+the command line or a one-off script and OAuth seems to want me to build a whole web app first. 
+But I know that I’ll need to use OAuth at some point, so better to bite the bullet now.</p>
+
+<p>Initially, I thought that I could use the <code class="highlighter-rouge">API token</code> from the Github
+<a href="https://github.com/account/admin">Account Settings page</a> – but that isn’t the OAuth access token. I ended up using
+a script from a <a href="https://github.com/jwilger/github-v3-api">Ruby library</a> and making a test application to extract my
+access token.</p>
+
+<p>When you make requests, you need to include the token in the headers like this:</p>
+
+<p><code class="highlighter-rouge">Authorization: token YOUR-TOKEN-HERE</code></p>
+
+<p>Also, I spent way too long banging my head against the wall because I was putting
+the encoding and contents in the headers as well, instead of the POST body. Doh. You need to 
+use JSON in the body as well, something like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test commit"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"encoding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utf-8"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>###Make a commit in just five easy* steps!</p>
+
+<p>After some investigating, I determined that the follow steps would result in a commit
+being added:</p>
+
+<ul>
+  <li>GET <code class="highlighter-rouge">/repos/:user/:repo/git/refs/heads/master</code>
+    <ul><li>Store the SHA for the latest commit (SHA-LATEST-COMMIT)</li></ul>
+  </li>
+  <li>GET <code class="highlighter-rouge">/repos/:user/:repo/git/commits/SHA-LATEST-COMMIT</code>
+    <ul><li>Store the SHA for the tree (SHA-BASE-TREE)</li></ul>
+  </li>
+  <li>POST <code class="highlighter-rouge">/repos/:user/:repo/git/trees/</code> while authenticated
+    <ul>
+      <li>Set <code class="highlighter-rouge">base_tree</code> to be SHA-BASE-TREE</li>
+      <li>Set <code class="highlighter-rouge">path</code> to be the full path of the file you are creating or editing</li>
+      <li>Set <code class="highlighter-rouge">content</code> to be the full contents of the file</li>
+      <li>From the response, get the top-level SHA (SHA-NEW-TREE)</li>
+    </ul>
+  </li>
+  <li>POST <code class="highlighter-rouge">/repos/:user/:repo/git/commits</code> while authenticated
+    <ul>
+      <li>Set <code class="highlighter-rouge">parents</code> to be an array containing SHA-LATEST-COMMIT</li>
+      <li>Set <code class="highlighter-rouge">tree</code> to be SHA-NEW-TREE</li>
+      <li>From the response, get the top-level SHA (SHA-NEW-COMMIT)</li>
+    </ul>
+  </li>
+  <li>POST <code class="highlighter-rouge">/repos/:user/:repo/git/refs/head/master</code> while authenticated
+    <ul>
+      <li>Set <code class="highlighter-rouge">sha</code> to be SHA-NEW-COMMIT</li>
+      <li>You may need to set <code class="highlighter-rouge">force</code> to be true</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Now view your repository and make sure everything is correct. This approach skips the manual <code class="highlighter-rouge">blob</code> creation
+since setting <code class="highlighter-rouge">tree.content</code> automatically builds one for you. The <code class="highlighter-rouge">/trees</code> API also handles deep paths and
+recursively rewrites subtrees. These two shortcuts saved me an even bigger headache.</p>
+
+<p>I’d like to see some abstraction, as I mentioned before, where you can POST something like this and it would
+magically work:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"parent_commit"</span><span class="p">:</span><span class="w"> </span><span class="err">sha</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"commit msg"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"path"</span><span class="p">:</span><span class="s2">"path/to/file"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"mode"</span><span class="p">:</span><span class="s2">"edit"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"data"</span><span class="p">:</span><span class="s2">"editted version of file"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"path"</span><span class="p">:</span><span class="s2">"path/to/new/file"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"mode"</span><span class="p">:</span><span class="s2">"add"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"data"</span><span class="p">:</span><span class="s2">"newly added file"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>There is likely lots of complexity with branches and doing less trivial commits, but for the simple
+use-case of making a new commit on the latest version on the <code class="highlighter-rouge">master</code> branch I think it could work.</p>
+
+<p>###What’s the point again?</p>
+
+<p>So the question is now, “Why are you doing all this Github API stuff anyways?”. I made a vague reference
+to a project idea in my first post so here are the details.</p>
+
+<p>I want to make a web-based editor for <a href="http://jekyllrb.com/">Jekyll-based</a>, <a href="http://pages.github.com/">Github Pages</a> hosted blogs (like my own). The idea being
+that I can add a static page to my blog that will allow me to login with my Github credentials, create and 
+edit posts, and push the commits back to the underlying repo all from the browser.</p>
+
+<p>The page would have a WYSIWYG Markdown previewer and some kind of file browser showing all items in your 
+<code class="highlighter-rouge">_posts</code> directory.</p>
+
+<p>“But why don’t you just write the posts in <code class="highlighter-rouge">gvim</code>?” Yeah, I know – I can (and do) write most of my posts from 
+<code class="highlighter-rouge">gvim</code> and push the changes up with the terminal. But sometimes I am not on my machine and don’t want to setup my
+SSH keys or install <code class="highlighter-rouge">git</code>. I also like the WYSIWYG side-by-side previews that you get from using something like
+<a href="http://www.ctrlshift.net/project/markdowneditor/">this online Markdown editor</a>.</p>
+
+<p>A web-based editor also makes Jekyll more approachable for non-technical users. Most people that use WordPress
+or something similar don’t care that static files are faster or that they need to update constantly to avoid
+security vulnerability; they use WordPress, in part, because it’s easy to make posts in the browser.</p>
+
+<p>Plus, the project will give me a chance to play with <a href="http://diveintohtml5.org/">HTML5</a>, <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, and making a single-page app.</p>
+
+<p>I plan to continue writing posts as I work on the project. The <a href="/blog/2010/10/24/weekly-noise.html">Weekly Noise</a> approach kind of fizzled out
+the last time I tried it (for my first Node.js project) but I liked the idea of keeping an “engineering 
+notebook” as I work.</p>
+
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2013/08/07/interview-to-implementation-horizon-report.html">Interview to Implementation: Horizon Report</a></li>
+          
+        
+          
+            <li><a href="/blog/2013/07/24/step-by-step-ux-improvement-screenshot-upload.html">Step-by-Step UX Improvement: Screenshot Upload</a></li>
+          
+        
+          
+            <li><a href="/blog/2011/08/21/update-on-lanyon-crossdomain-ajax-posts.html">Update on Lanyon + Cross-domain AJAX POSTs with CORS</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

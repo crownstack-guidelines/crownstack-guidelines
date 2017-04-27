@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Changing Plans</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2013/04/10/changing-plans.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Changing Plans
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>
+        
+          Series:
+          
+            
+              <a href="/#practices">practices</a>
+            
+          
+        
+      </span>
+
+      <span class="date">
+        April 10, 2013
+      </span>
+    
+  </p>
+
+  <div id="post"><p>There is some friction between agile methodologies and the desire for
+upfront formal requirements that has really been bugging me lately.</p>
+
+<p>I often find myself wanting to have my cake and eat it too: I want clear and
+final requirements, but I don’t want to be forced to design an entire system
+upfront and drown in UML diagrams.</p>
+
+<p>Part of this stance is due to the fear of change; the desire to not code
+yourself into a corner later on in the project. No one wants to tell
+their boss (or worse, their client) that they’ve picked a design that doesn’t
+accommodate the new changes that need to be made.</p>
+
+<blockquote>
+  <p>You will never know less [about your software] than you do now. <cite style="float: right; display: block;"><a href="http://sandimetz.com/">Sandi Metz</a></cite></p>
+</blockquote>
+
+<p>This is a scary thought!</p>
+
+<p>There will never be a time on this project when you will know less about how
+changes will impact the rest of the system than <strong>right now</strong>. Only with time 
+and experience with the project will you begin to fully understand the 
+consequences of your earlier design choices.</p>
+
+<p>So should we just never code anything and twiddle our thumbs? Of course not.</p>
+
+<p>But what can we do? What are some reasonable steps we can take to build a 
+flexible system (but not end up with a pile of XML configuration files)?</p>
+
+<h3 id="recognize-and-manage-dependencies">Recognize and manage dependencies</h3>
+
+<p>Dependency Injection (DI) gets a bad wrap and that is mainly because of some 
+hairy DI <em>frameworks</em> that do a bunch of auto-wiring and other black magic. The 
+principle of Dependency Injection is actually pretty simple: pass in objects 
+you depend on as arguments.</p>
+
+<p>Change from this:</p>
+
+<div class="language-csharp highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Appraisal</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">ComicBook</span> <span class="n">comicBook</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">Appraisal</span><span class="p">(</span><span class="kt">long</span> <span class="n">comicBookId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">comicBook</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ComicBookFinder</span><span class="p">.</span><span class="nf">FindById</span><span class="p">(</span><span class="n">comicBookId</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="n">Money</span> <span class="nf">ComputePrice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">var</span> <span class="n">percentageModifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ComicBookGrader</span><span class="p">.</span><span class="nf">Grade</span><span class="p">(</span><span class="n">comicBook</span><span class="p">.</span><span class="n">condition</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">comicBook</span><span class="p">.</span><span class="n">ListPrice</span> <span class="p">*</span> <span class="n">percentageModifier</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>to this:</p>
+
+<div class="language-csharp highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Appraisal</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">ICollectible</span> <span class="n">collectible</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">private</span> <span class="n">IGrader</span> <span class="n">collectableGrader</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">Appraisal</span><span class="p">(</span><span class="n">ICollectable</span> <span class="n">collectible</span><span class="p">,</span> <span class="n">IGrader</span> <span class="n">collectableGrader</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">collectible</span> <span class="p">=</span> <span class="n">collectible</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">collectableGrader</span> <span class="p">=</span> <span class="n">collectableGrader</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="n">Money</span> <span class="nf">ComputePrice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">var</span> <span class="n">percentageModifier</span> <span class="p">=</span> <span class="n">collectableGrader</span><span class="p">.</span><span class="nf">Grade</span><span class="p">(</span><span class="n">collectible</span><span class="p">.</span><span class="n">condition</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">collectible</span><span class="p">.</span><span class="n">ListPrice</span> <span class="p">*</span> <span class="n">percentageModifier</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Did I have to define a Registry in an XML file? Is there some DI Container
+framework I have to setup? Nope, just a constructor argument.</p>
+
+<p>Maybe we never need to appraise other types of collectibles with this app. But 
+it was a trivial change and it will save us later down the road when the client 
+now wants to expand to include Action Figures.</p>
+
+<p>And as a nice little bonus, the second version is way easier to test.</p>
+
+<h3 id="build-re-usable-modules">Build re-usable modules</h3>
+
+<p>Single Responsibility Principle (SRP) is another hotly-debated pattern in 
+software design. I think this is because it is really damn confusing.</p>
+
+<p>If you are asked, “What is the Single Responsibility of this class?” and you
+respond with “Well, it manages all of the business logic. That is the one thing
+it does!”, you will probably get yelled at.</p>
+
+<p>If you trace the <a href="http://en.wikipedia.org/wiki/Responsibility-driven_design">origin story of SRP</a>, however, you will find the intention 
+is a class that “has responsibilities that fulfill its purpose”. Nothing about one
+discrete job, but rather that the class as a whole is cohesive.</p>
+
+<p>Well great! Except what the heck is a “cohesive class”?</p>
+
+<p><a href="http://www.poodr.info/">Sandi Metz</a> has an interesting technique that has been helpful to me: 
+to help identify if a class is cohesive or not, imagine it as someone you are
+interrogating. For each public method, ask the object in the form of a question:</p>
+
+<div class="language-csharp highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">QuarterlySalesReport</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">FiscalQuarter</span> <span class="nf">SalesQuarter</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Sales</span><span class="p">&gt;</span> <span class="nf">AllSales</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="n">Product</span> <span class="nf">MostProfitableProduct</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>“Mr. <code class="highlighter-rouge">QuarterlySalesReport</code>, what sale quarter are you for?”</p>
+
+<p>“Mr. <code class="highlighter-rouge">QuarterlySalesReport</code>, what are all of your sales?”</p>
+
+<p>“Mr. <code class="highlighter-rouge">QuarterlySalesReport</code>, what was the most profitable product?”</p>
+
+<p>The first two questions seem reasonable.</p>
+
+<p>The third seems a bit out of place. There are many other objects that you might 
+want to ask this same question to — a <code class="highlighter-rouge">YearlySalesReport</code>, a 
+<code class="highlighter-rouge">StoreSalesReport</code>, a <code class="highlighter-rouge">ProductCatalogue</code>, etc.</p>
+
+<p>Instead, we could ask the <code class="highlighter-rouge">QuarterlySalesReport</code> for the list of sales and pass
+that to a <code class="highlighter-rouge">ProfitCalculator</code>. When the company expands overseas and we have
+to consider international tariffs and customs fees when calculation our profit,
+we will be thankful we only need to make changes in one place.</p>
+
+<p>If you find yourself asking questions don’t seem reasonable, this is a
+sign that your class is not cohesive and is holding on to too much behavior. Try
+extracting that logic in a smaller, re-usable piece.</p>
+
+<hr />
+
+<p>Requirement changes will happen. We cannot anticipate how a project’s plan may
+change, but we can take modest steps to make our systems more flexible and
+better equipped to handle it.</p>
+
+<p>Do not fear change, but rather embrace it and accept that it is a part of the 
+process.</p>
+
+<p>Software that doesn’t change is software that isn’t used. And I, for one, would
+much rather work on projects that are actually used than a perfectly specified 
+piece of adandonware.</p>
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+          
+            <li><a href="/blog/2016/04/22/compounding-technical-debt.html">Compounding technical debt</a></li>
+          
+        
+          
+            <li><a href="/blog/2016/01/25/sell-or-kill.html">Internal tools should be sold or killed</a></li>
+          
+        
+          
+            <li><a href="/blog/2015/10/26/code-neutral.html">Code Neutral</a></li>
+          
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>

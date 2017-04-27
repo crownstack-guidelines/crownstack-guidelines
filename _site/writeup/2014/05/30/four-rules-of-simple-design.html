@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Understanding the Four Rules of Simple Design</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/writeup/2014/05/30/four-rules-of-simple-design.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    "Understanding the Four Rules of Simple Design" Book Writeup
+  </h1>
+
+  <p class="subtitle">
+    <span>May 30, 2014</span>
+  </p>
+
+  <div id="writeup">
+    <div class="book-summary">
+      <img src="http://localhost:4000/static/4rules.png" alt="Understanding the Four Rules of Simple Design Book Cover" />
+
+      
+      
+
+      
+        <a href="https://leanpub.com/4rulesofsimpledesign">
+          Understanding the Four Rules of Simple Design: and other lessons from watching thousands of pairs work on Conway's Game of Life
+        </a>
+      
+      
+      <span>Corey Haines</span>
+      
+      
+    </div>
+    
+    <hr />
+    
+    <p><strong>What’s the point?</strong><br />
+A few years ago, I spent a Saturday in a room of developers doing a <a href="http://www.mdswanson.com/blog/2011/12/05/global-day-of-code-retreat-recap.html">“Code Retreat”</a>. The idea
+is to work on solving <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway’s Game of Life</a> as an exercise in small-scale software design.
+You work in a pair for 45 minutes, sometimes with special constraints like “no if-statements”
+or “no mutation”, and then you promptly delete all the code, switch partners, and start again.</p>
+
+<p>Corey Haines is the main facilitator of this event and this book catalogues some of the
+core lessons he learned from running these retreats over the past five years. He codifies
+these lessons into “the four rules of simple design” — a set of guidelines coined by Kent
+Beck in the 1990s.</p>
+
+<p><strong>How was it?</strong><br />
+A very quick and enjoyable read. By limiting the scope of the book to Conway’s Game of
+Life, the author is able to go deep into discussions without having to construct new 
+examples for every concept.</p>
+
+<p>The four rules — tests pass, expresses intent, no duplication, and simple —
+seem to be a bit more approachable than the more formal rules (SOLID, Law of Demeter, etc).
+I appreciated that the rules have a bit of room for interpretation and discussion.</p>
+
+<p>After a brief explanation of each rule, the author dives into concrete examples and explains
+some of the more nuanced points, such as “topology duplication” and testing behavior to show
+intent.</p>
+
+<p>I had a real Aha moment when I came across an example of “tests that depend on previous
+tests”. In this specific case, an assumption was made about the default constructor of an object.
+Because there was a lack of explicitness, unrelated changes caused a whole bunch of tests 
+to fail. The solution — which I’ve had trouble articulating in the past — is to use 
+builder methods and not allow external callers to use a default constructor. This had the
+added benefit of being more clear, since the name of the build method was more revealing than
+an empty <code class="highlighter-rouge">new()</code>.</p>
+
+<p><strong>Who should read it?</strong><br />
+Anyone struggling with uncertainity about how to design object relationships would benefit from
+this book. As a past Code Retreat attendee, I enjoyed being able to look back and see how a master
+of the domain implemented solutions; it felt kind of like I was reading the secret solution’s
+manual :-)</p>
+
+
+  </div>
+      
+  <hr class="fin"/>
+</article>
+
+<footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+  </section>
+
+  
+</body>
+</html>

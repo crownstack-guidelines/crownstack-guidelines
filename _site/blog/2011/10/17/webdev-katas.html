@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - Web Development Kata - Tweet Viewer</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="writing on software, book writeups and projects by a software engineer from Indianapolis" />
+  
+  <link rel="canonical" href="http://mdswanson.com/blog/2011/10/17/webdev-katas.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson's Blog" href="http://localhost:4000/atom.xml" />
+
+  
+    <link rel="stylesheet" href="/css/site.css">
+  
+</head>
+<body>
+  <section>
+    <header class="navigation">
+  <a href="/" class="logo" title="ÄLG, a solitary moose.">
+    <img src="/static/moose.png" alt="Moose">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">writing</a></li>
+      <li><a href="/archive">archive</a></li>
+      <li><a href="/about">about</a></li>
+      <li class="no-bullet"><a href="/atom.xml">rss</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <h1 class="title">
+    Web Development Kata - Tweet Viewer
+  </h1>
+
+  
+  <p class="subtitle">
+    
+      <span>October 17, 2011</span>
+    
+  </p>
+
+  <div id="post"><blockquote>
+  <p>I’ve been on the lookout for practical katas related to web
+development. I couldn’t really find any I liked so I tried my hand at writing
+one myself.</p>
+
+  <p>I think this problem fits the kata model pretty well - iterative steps
+that build on each other and an almost infinite way to accomplish most of the tasks.</p>
+</blockquote>
+
+<p><strong>Problem:</strong><br />
+The boss wants to keep up-to-date on that new social media thing,
+but Twitter’s UI is too advanced for him. He wants you to whip up a simple Tweet Viewer
+so he can maximize his synergy and improve team dynamics.</p>
+
+<p><strong>Pre-Reqs:</strong></p>
+<ul>
+  <li>A web environment that can speak HTTP</li>
+  <li>A text editor</li>
+  <li>A browser</li>
+</ul>
+
+<p><strong>Provided:</strong><br />
+A static list of tweets: <a href="/static/sample-tweets.txt">sample-tweets.txt</a></p>
+
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Display a tweet</li>
+  <li>Display a static list of tweets</li>
+  <li>Linkify @mentions and #hashtags</li>
+  <li>“Pretty print” timestamps</li>
+  <li>Display tweets for a specific user</li>
+  <li>Display live Twitter data using API</li>
+  <li>(Bonus) Infinite Loading button with AJAX</li>
+</ol>
+
+<h2><br /></h2>
+<p><br /></p>
+
+<h2 id="1-display-a-tweet">1. Display a tweet</h2>
+<p>When I visit <code class="highlighter-rouge">http://localhost/</code>, display a single tweet. It should
+include the username, message and timestamp and be similar
+in design to this template.</p>
+
+<p><img src="/static/tweet-template.png" alt="" /></p>
+
+<h2 id="2-display-a-static-list-of-tweets">2. Display a static list of tweets</h2>
+<p>When I visit <code class="highlighter-rouge">http://localhost/</code>, it should now display the 
+<a href="/static/sample-tweets.txt">list of 5 tweets</a> using the same template as before.</p>
+
+<h2 id="3-linkify-mentions-and-hashtags">3. Linkify @mentions and #hashtags</h2>
+<p>Any words beginning with the <code class="highlighter-rouge">@</code> characters are @mentions, they should
+be converted into links that point to the mentioned user’s Twitter page.
+For example, <code class="highlighter-rouge">@github</code> should be a link to <code class="highlighter-rouge">http://twitter.com/github</code>.</p>
+
+<p>Any words beginning with the <code class="highlighter-rouge">#</code> are #hashtags, they should be converted
+into links that point to the Twitter search page for that tag.
+For example <code class="highlighter-rouge">#pun</code> should be a link to <code class="highlighter-rouge">http://twitter.com/search/%23pun</code> 
+(note the encoded <code class="highlighter-rouge">#</code>).</p>
+
+<h2 id="4-pretty-print-timestamps">4. “Pretty print” timestamps</h2>
+<p>Instead of displaying the timestamp like <code class="highlighter-rouge">Jan 01, 2011 10:24:55 +0000</code>, use a
+more readable format like <code class="highlighter-rouge">Around 5 minutes ago</code>.</p>
+
+<p>Less than a minute ago<br />
+Around X minutes ago<br />
+Around X hours ago<br />
+Around X days ago<br />
+Around X weeks ago<br />
+Around X months ago<br />
+A year or more ago</p>
+
+<p>Use the bigger time range whenever possible (i.e. <code class="highlighter-rouge">Around 1 week ago</code> instead of <code class="highlighter-rouge">Around 7 days 
+ago</code>); feel free to modify the timestamp of the sample tweets for testing.</p>
+
+<h2 id="5-display-tweets-for-a-specific-user">5. Display tweets for a specific user</h2>
+<p>When I visit <code class="highlighter-rouge">http://localhost/?user=johnsmith</code>, display a list of all tweets with a
+username of <code class="highlighter-rouge">johnsmith</code> in the sample list. If I input a user with no tweets,
+display the message <code class="highlighter-rouge">No tweets found for @USERNAME</code>.</p>
+
+<h2 id="6-display-live-twitter-data">6. Display live Twitter data</h2>
+<p>When I visit <code class="highlighter-rouge">http://localhost/?user=someuser</code>, display the last 15 tweets from the desired
+user using live Twitter data. If the user has less than 15 tweets, display all of their
+tweets.</p>
+
+<p>One way to get the data is to use the 
+<a href="https://dev.twitter.com/docs/api/1/get/search">Twitter Search API</a>. Read through the documentation
+to figure out the parameters you can use.</p>
+
+<h2 id="bonus-infinite-loading-button-with-ajax">Bonus: Infinite Loading button with AJAX</h2>
+<p>Add a button below the list of tweets, when clicked the page should use AJAX to load the next 
+15 tweets from the desired user using live Twitter data.</p>
+
+<p>Hide the button and display a loading spinner (or the string <code class="highlighter-rouge">Loading...</code>) while the page is 
+waiting for the data.</p>
+
+<p>If all of a user’s tweets are displayed, the button should disappear.</p>
+
+<hr />
+
+<p>Some things you practice with this kata: basic HTML/CSS layouts, simple data modeling, 
+rendering stored data, templating/partials, URL/query parameters, view helpers, querying data,
+interacting with external APIs, and AJAX POSTs (if you do the bonus).</p>
+
+<p>You can extend the kata once you master it; try adding OAuth, the ability to write tweets, real 
+time updates, caching results, better styling, moving work from server side to client side.</p>
+</div>      
+
+  
+    <hr class="fin"/>
+  
+</article>
+
+
+  <footer>
+  <div id="bio">
+    <div id="bio-image">
+      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+    </div>
+    
+    <div id="bio-text">
+      <p>Hi. I'm <b>Matt Swanson</b>.</p>
+      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
+      
+      <div id="bio-social">
+        <strike>Stalk</strike> Follow me:
+<div id="social-links">
+  <a title="swanson on Github" href="http://github.com/swanson/"><i class="fa fa-github-square"></i></a>
+  <a title="swanson on Hacker News" href="http://news.ycombinator.com/user?id=swanson"><i class="fa fa-hacker-news"></i></a>
+  <a title="_swanson on Twitter" href="http://twitter.com/_swanson"><i class="fa fa-twitter-square"></i></a>
+  <a title="RSS feed" id="rss" href="/atom.xml"><i class="fa fa-rss-square"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <aside>
+    <h3>Further reading</h3>
+    <ul class="posts">
+      
+        
+        
+      
+    </ul>
+  </aside>
+  
+</footer>
+
+<div id="fine-print">
+  <p>
+    built with <a href="#">&hearts;</a>, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="https://github.com/swanson/swanson.github.com">GitHub Pages</a> &mdash; read the <a href="/legal">fine print</a>
+  </p>
+</div>
+
+  </section>
+
+  
+</body>
+</html>
