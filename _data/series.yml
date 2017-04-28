@@ -1,9 +1,9 @@
-- name: Engineering in Android
+- name: Android
   desc: |
     Applying best-practices &amp; techniques to Android development
   tag_name: android
 
-- name: Engineering in iOS
+- name: iOS
   desc: |
     Applying best-practices &amp; techniques to iOS development
   tag_name: android
