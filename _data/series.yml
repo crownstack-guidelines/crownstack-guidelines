@@ -6,4 +6,4 @@
 - name: iOS
   desc: |
     Applying best-practices &amp; techniques to iOS development
-  tag_name: android
+  tag_name: iOS
