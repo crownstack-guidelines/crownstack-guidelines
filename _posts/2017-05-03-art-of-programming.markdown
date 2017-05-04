@@ -5,6 +5,7 @@ categories:
 - blog
 tags:
 - android
+author: Prinsu Kumar
 ---
 
 ## The Beginning
