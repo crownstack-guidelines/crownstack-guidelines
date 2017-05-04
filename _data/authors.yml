@@ -1,0 +1,17 @@
+# Authors
+
+Aashish Dhawan:
+  name        : "Aashish Dhawan"
+  email       : "aashishdhawan@crownstack.com"
+  bio         : "I take care of engineering at CrownStack. Breaks things daily."
+  avatar      : "/static/AashishDhawan.jpeg"
+  twitter     : "https://twitter.com/aashish_dhawan"
+  github      : "https://github.com/aashishdhawan"
+
+Prinsu Kumar:
+  name        : "Prinsu Kumar"
+  email       : "prinsu@crownstack.com"
+  bio         : "I am an Android developer at CrownStack."
+  avatar      : "/static/Prinsu.jpeg"
+  twitter     : "https://twitter.com/pkvarnwal"
+  github      : "https://github.com/pkvarnwal"

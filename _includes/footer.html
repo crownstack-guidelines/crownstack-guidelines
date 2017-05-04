@@ -1,15 +1,25 @@
+{% if page.author and site.data.authors[page.author] %}
+  {% assign author = site.data.authors[page.author] %}
+{% else %}
+  {% assign author = site.author %}
+{% endif %}
+
 <footer>
   <div id="bio">
     <div id="bio-image">
-      <img src="/static/mugshot.jpg" alt="Matt Swanson">
+      <img src="{{author.avatar}}" alt="{{ author.name}}">
     </div>
-    
+
     <div id="bio-text">
-      <p>Hi. I'm <b>Matt Swanson</b>.</p>
-      <p>I do things and sometimes write about it here. I'm a Software Engineer from Indiana and I ship code at <a href="http://www.sep.com/">SEP</a>.</p>
-      
+      <p>Hi. I'm <b>{{ author.name }}</b>.</p>
+      <p>{{ author.bio }}</p>
+
       <div id="bio-social">
-        {% include social.html %}
+        Follow me:
+        <div id="social-links">
+          <a title="On Github" href="{{ author.github }}"><i class="fa fa-github-square"></i></a>
+          <a title="On Twitter" href="{{ author.twitter }}"><i class="fa fa-twitter-square"></i></a>
+        </div>
       </div>
     </div>
   </div>

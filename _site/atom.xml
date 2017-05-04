@@ -4,7 +4,7 @@
  <title>Matt Swanson's Blog</title>
  <link href="http://mdswanson.com/atom.xml" rel="self"/>
  <link href="http://mdswanson.com/"/>
- <updated>2017-04-28T13:54:35+05:30</updated>
+ <updated>2017-05-04T13:51:00+05:30</updated>
  <id>http://mdswanson.com/</id>
  <author>
    <name>Matt Swanson</name>
@@ -12,6 +12,18 @@
    <url>mdswanson.com</url>
  </author>
 
+ 
+ <entry>
+   <title>Art of Programming</title>
+   <link href="http://mdswanson.com/blog/2017/05/03/art-of-programming.html"/>
+   <published>2017-05-03T00:00:00+05:30</published>
+   <updated>2017-05-03T00:00:00+05:30</updated>
+   <id>http://swanson.github.com/blog/2017/05/03/art-of-programming</id>
+   <content type="html">&lt;h2 id=&quot;the-beginning&quot;&gt;The Beginning&lt;/h2&gt;
+
+&lt;p&gt;Programming is an art in which a person gets better with time and experience. A developer who is just starting his career has lot of things to learn and the first step is writing a beautiful, well structured  and consistent code which follow basic principles like &lt;code class=&quot;highlighter-rouge&quot;&gt;DRY&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Boy Scout rule&lt;/code&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  
 </feed>
