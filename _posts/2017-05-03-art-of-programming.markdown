@@ -20,6 +20,6 @@ Well structured code improves quality, clarity and reduces development time. Div
 ### Consistency
 
 Consistent code always makes leagacy code easy to work with which in turns reduces development cost and makes it easy to find bugs.
-Consistent can be achieved by adopting lets say, a common code style guide, consistent naming conventiton and following industry standards.
+Consistency can be achieved by adopting lets say, a common code style guide, consistent naming conventiton and following industry standards.
 
 Naming is one the hardest problem in computer science and it takes years to master this craft. A function's name should explain its intent or class name should reveal its use.
