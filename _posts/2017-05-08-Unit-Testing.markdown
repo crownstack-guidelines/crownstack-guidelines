@@ -3,7 +3,9 @@ title:  "Unit Testing"
 date:   2016-11-16 11:11:11
 author: Aashish Dhawan
 categories:
-  - Technical
+- blog
+tags:
+- programming
 ---
 
 Unit Testing is one of those topics which get discussed a lot and everyone says that we must use it but in fact truth is, in real world you find lot of things which push you away from Unit Testing, Here is my personal experience with Unit Testing and factor affecting it and lessons learned.
