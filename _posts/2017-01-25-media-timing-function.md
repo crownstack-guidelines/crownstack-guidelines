@@ -78,18 +78,18 @@ The above code snippet creates a class `EasingFunctionGraph` which plots the fun
 
 Please notice that in `let firstLine = EasingFunctionGraph(x1: 0.25, y1: 0.1, x2: 0.25, y2: 1.0)` we have passed the control points for `kCAMediaTimingFunctionDefault` which we got above. You will see following curve plotted in playground live view.
 
-<img src="http://aashishdhawan.github.io/images/default-plot.png" alt="Drawing" style="width: 200px;"/>
+<img src="/static/default-plot.png" alt="Drawing" style="width: 200px;"/>
 
 Lets try `easeInEaseOut` curve with `let firstLine = EasingFunctionGraph(x1: 0.42, y1: 0.0, x2: 0.58, y2: 1.0)`. You will see following curve plotted in playground live view.
 
-<img src="http://aashishdhawan.github.io/images/ease-in-ease-out.png" alt="Drawing" style="width: 200px;"/>
+<img src="/static/ease-in-ease-out.png" alt="Drawing" style="width: 200px;"/>
 
 
 This is fun. Now we can try custom values for control points and see how this curve behaves.
 
 Actually we can create a lot of custom curves like this
 
-<img src="http://aashishdhawan.github.io/images/all-curves.png" alt="Drawing" style="width: 600px;"/>
+<img src="/static/all-curves.png" alt="Drawing" style="width: 600px;"/>
 
 There is a good cheat sheet available [here](http://easings.net/).
 
