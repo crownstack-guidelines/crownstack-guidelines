@@ -7,3 +7,8 @@
   desc: |
     Applying best-practices &amp; techniques to iOS development
   tag_name: iOS
+
+- name: Programming
+  desc: |
+    Applying best-practices to art of programming
+  tag_name: programming

@@ -4,7 +4,7 @@ title: "Art of Programming"
 categories:
 - blog
 tags:
-- android
+- programming
 author: Prinsu Kumar
 ---
 
