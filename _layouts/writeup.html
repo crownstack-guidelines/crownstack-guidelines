@@ -27,23 +27,23 @@ layout: default
           {{ full_title }}
         </a>
       {% else %}
-        <a href="https://amzn.com/{{ page.isbn }}?tag=mdswanson-20">
+        <a href="https://amzn.com/{{ page.isbn }}">
           {{ full_title }}
         </a>
       {% endif %}
-      
+
       <span>{{ page.author }}</span>
-      
+
       {% if page.isbn %}
         <span>ISBN: {{ page.isbn }}</span>
       {% endif %}
     </div>
-    
+
     <hr />
-    
+
     {{ content }}
   </div>
-      
+
   <hr class="fin"/>
 </article>
 

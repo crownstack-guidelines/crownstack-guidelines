@@ -2,8 +2,9 @@
 title:  "The mythical man month - Summary"
 date:   2017-06-07
 author: Aashish Dhawan
+isbn:   0201835959
 categories:
-- blog
+- writeup
 tags:
 - writeup
 ---
@@ -14,19 +15,19 @@ This one particular book is very popular among programmers and managers. This we
 
 What interesting is, dividing the software craftsmanship into four categories. Now, this following categorization changed the way I look at software development and how I estimate them.
 
-#### 1.1 A Program
+### 1.1 A Program
 
 A program when complete in itself is ready to be run by the author on the system on which it was developed. This is what people generally use to estimate work and measure productivity.
 
-#### 1.2 A programming product
+### 1.2 A programming product
 
 The is a program which can be tested, repaired and extended by anybody. This generally needs three times more work than creating a program. For this substantial numbers of test cases needs to be written, input needs to be generalized. Input range and boundaries need to be decided and most importantly a proper documentation needs to be written and maintained.
 
-#### 1.3 A programming system
+### 1.3 A programming system
 
 A programming system is generally a combination of many programming products and it has additional complexity of managing the interface between various programming products. Again, as a rule of thumb, a programming system is three times more costly than the combination of all its programming products.
 
-##### 1.4 A programming system product
+### 1.4 A programming system product
 
 This is truly a usable product, a combination of all of the above. It might cost nine times as much but this is the end goal of almost all large software products.
 
