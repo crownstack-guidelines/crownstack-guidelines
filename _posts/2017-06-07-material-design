@@ -1,1 +1,17 @@
+---
+layout: post
+title: "Material Design"
+categories:
+- blog
+tags:
+- UI
+author: Prinsu Kumar
+---
 
+
+Material design as the Google guidelines is not just the design for a particular plateform, It is a visual language
+which can be used on every plateform whether it is `Smartphone, tablets, PCs, TVs` etc.
+Material has physical surfaces and edges. Seams and shadow provide meaning about what you can touch.
+`Google states that their new design language is based on paper and link`.
+It introduced in API Level 21(Android 5.0) and newer. You can use it to update your
+`Support Library and Support Repository`.
