@@ -6,7 +6,7 @@ skip_footer: true
 ---
 
 <div id="archive">
-{% for author in site.author %}
+{% for author in site.authors %}
   <h2>{{ author }}</h2>
   {% for post in site.posts %}
     {% if author == post.author %}
