@@ -1,5 +1,5 @@
 ---
-title:  "The mythical man month - Summary"
+title:  "The mythical man month"
 date:   2017-06-07
 author: Aashish Dhawan
 isbn:   0201835959
