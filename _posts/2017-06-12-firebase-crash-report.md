@@ -12,7 +12,7 @@ Crash Reporting is an important feature nowadays. It is used to know that when y
 
 `Firebase Crash Reporting` creates the detail error report of your application. It recieve the automatic crash reports just you have to use it in your application. You can also get crash reports on your emailId.
 
-## Evalution of Firebase Crash Report
+## Evaluation of Firebase Crash Report
 <img src="/static/firebase_crash_graph.png" alt="Drawing" style="width: 600px;"/>
 
 * Error on the basis of time interval.
