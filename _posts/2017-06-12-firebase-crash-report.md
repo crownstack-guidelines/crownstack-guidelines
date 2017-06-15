@@ -24,3 +24,7 @@ User can have version and error type specific crash reports.
 * `Stack trace` abbreviated version of the stack trace.
 
 <img src="/static/firebase_crash_report.png" alt="Drawing" style="width: 600px;"/>
+
+* Provide additional data such as user location, network provider, device detail and performance.
+
+<img src="/static/firebase_crash_report_additional_data.png" alt="Drawing" style="width: 600px;"/>
