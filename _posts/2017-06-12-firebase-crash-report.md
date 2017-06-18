@@ -14,7 +14,7 @@ Crash Reporting is an important feature nowadays. It is used to know that when y
 
 ## Improve application by Firebase Crash Report
 
-A good application have less crash. It's hard to find all crash in the application at testing. There may be many untold crashes. My application was suffering from many crashes. I got lots of bad review . It was hard to find all the crash in testing environment. Then used `Firebase Crash Reporting` to track crashe in my application. Whenever a crash occured it send the crash report on firebase and notified me on my emailId. It help me to solve those crashes and making application crash free.  
+A good application have less crash. It's hard to find all crash in the application at testing. There may be many untold crashes. My application was suffering from many crashes. I got lots of bad review . It was hard to find all the crash in testing environment. Then used `Firebase Crash Reporting` to track crashe in my application. Whenever a crash occured it send the crash report on firebase and notified me on my emailId. It help me to solve those crashes and making application crash free.
 
 ## Explore Crash Report
 
@@ -32,3 +32,16 @@ User can have version and error type specific crash reports.
 * Provide additional data such as user location, network provider, device detail and performance.
 
 <img src="/static/firebase_crash_report_additional_data.png" alt="Drawing" style="width: 600px;"/>
+
+## Analytics events in Crash Logs
+
+Firebase Analytics events are now added to your crash logs, which gives you a more complete view of the state of your app leading up to crash.
+
+## Additional feature
+
+* Can send custom crash log to firebase cosole.
+* Can get email alert for crash.
+
+## Conclusion
+
+`Firebase Crash Reporting` is one of the most important tool of `Firebase` to make your app better and crash free.
