@@ -15,7 +15,9 @@ layout: default
 
   <div id="writeup">
     <div class="book-summary">
-      <img src="{{ site.url }}/static/{{ page.image }}" alt="{{page.title}} Book Cover" />
+      <img src="http://images.amazon.com/images/P/{{ page.isbn }}.01.20TRZZZZ.jpg"
+
+" alt="{{page.title}} Book Cover" />
 
       {% assign full_title = page.title %}
       {% if page.full_title %}
@@ -27,23 +29,23 @@ layout: default
           {{ full_title }}
         </a>
       {% else %}
-        <a href="https://amzn.com/{{ page.isbn }}?tag=mdswanson-20">
+        <a href="https://amzn.com/{{ page.isbn }}">
           {{ full_title }}
         </a>
       {% endif %}
-      
+
       <span>{{ page.author }}</span>
-      
+
       {% if page.isbn %}
         <span>ISBN: {{ page.isbn }}</span>
       {% endif %}
     </div>
-    
+
     <hr />
-    
+
     {{ content }}
   </div>
-      
+
   <hr class="fin"/>
 </article>
 

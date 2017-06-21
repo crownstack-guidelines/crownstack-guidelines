@@ -1,22 +1,21 @@
 ---
 layout: post
-title: Archives
+title: Authors
 skip_related: true
 skip_footer: true
 ---
 
 <div id="archive">
+{% for author in site.data.authors %}
+<h2>{{ author[1].name }}</h2>
+
 {% for post in site.posts %}
-  {% assign currentdate = post.date | date: "%Y" %}
-  {% if currentdate != date %}
-    {% unless forloop.first %}</ul>{% endunless %}
-<h2>{{ currentdate }}</h2>
-<ul>
-    {% assign date = currentdate %}
-  {% endif %}
+{% if post.author == author[1].name %}
   <li {% if post.favorite and post.layout != "writeup" %}class="favorite"{% endif %}>
     <a href="{{ post.url }}">{{ post.title }}{% if post.layout == "writeup" %} (Book Writeup){% endif %}</a>
   </li>
-  {% if forloop.last %}</ul>{% endif %}
+  {% endif %}
+{% endfor %}
+
 {% endfor %}
 </div>
