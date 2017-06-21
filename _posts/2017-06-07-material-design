@@ -15,3 +15,33 @@ Material has physical surfaces and edges. Seams and shadow provide meaning about
 `Google states that their new design language is based on paper and link`.
 It introduced in API Level 21(Android 5.0) and newer. You can use it to update your
 `Support Library and Support Repository`.
+
+
+### Responsive
+
+
+Material is `full of energy`, it quickly responds to user input precisely where the user triggers it.
+Ink ripples confirm user input by immediately expanding outward from the point of touch.
+
+
+### Natural
+
+
+Material depicts natural movement inspired by forces in the `real world`.
+In the real world an element's ability to speed up or slow down quickly is effected by weight and surface
+friction. In a similar way, `starts and stops` do not occur instantaneously in Material design.
+
+
+### Aware
+
+
+Material is aware of its surroundings, including the user and other material around it.
+It can be attracted to elements and respond appropriately to user intent.
+elements may attract other elements and join with them as they approach one another.
+
+
+### Intentional
+
+
+Material in motion guides focus to the right spot at right time.
+Animation can bring focus to elements that need user attention.
