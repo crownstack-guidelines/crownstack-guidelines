@@ -1,5 +1,4 @@
-Welcome to the Project-Scaffolding wiki!
-
+## Project Scaffolding
 Project Scaffolding provides you an ecosystem for Small to Large Teams working on a project. Here at crownstack, we help you kickstart new projects, prescribing best practices and tools to stay productive. To Generate an ecosystem that puts Developers, System Administrator, and Functional teams in a roof, This Blog will tell you how to scaffold your whole project with few command execution. We know the importance of Scalability, High Availability, Resilient, Optimization factors.
 
 ### Table of Contents
