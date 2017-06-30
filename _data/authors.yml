@@ -15,3 +15,11 @@ Prinsu Kumar:
   avatar      : "/static/Prinsu.jpeg"
   twitter     : "https://twitter.com/pkvarnwal"
   github      : "https://github.com/pkvarnwal"
+  
+Ajay Upreti:
+  name        : "Ajay Upreti"
+  email       : "ajay.upreti@crownstack.com"
+  bio         : "I am an Front End developer at CrownStack."
+  avatar      : "/static/Ajay.jpg"
+  twitter     : "https://twitter.com/ajayupreti9"
+  github      : "https://github.com/ajayupreti" 
