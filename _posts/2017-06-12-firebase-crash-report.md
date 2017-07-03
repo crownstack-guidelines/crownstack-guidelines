@@ -1,11 +1,11 @@
 ---
-title:  "Firebase Crash Report"
+title:  "Building better apps with Firebase Crash Reporting"
 date:   2017-06-12
 author: Ashutosh Singh
 categories:
 - blog
 tags:
-- Android
+- android
 ---
 
 
