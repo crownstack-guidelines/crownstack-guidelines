@@ -8,23 +8,24 @@ tags:
 - Firebase
 ---
 
-Crash Reporting is an important feature nowadays. It is used to know that when your app get crashed and which type of error occurred. There are many tools such as Acra, Sentry, etc. `Firebase Crash Reporting` is one of them.
 
-`Firebase Crash Reporting` generate detail error report of application. It recieves automatic crash reports just you have to integrate(easy to use). Error takes few minutes(about 20 minutes according to the Firebase docs), to appear on Crash Reporting console.
+Crash Reporting is an important feature nowadays. It is used to know that when your app gets crashed and which type of error occurred. There are many tools such as Acra, Sentry, etc. `Firebase Crash Reporting` is one of them.
+
+`Firebase Crash Reporting` generate detail error report of application which takes few minutes(about 20 minutes according to the Firebase docs), to appear on Crash Reporting console. Also, it is super easy to integrate.
 
 ## Improve application by Firebase Crash Report
 
-A good application have less crash. It's hard to find all crash in the application at testing. There may be many untold crashes. My application was suffering from many crashes. I got lots of bad review . It was hard to find all the crash in testing environment. Then used `Firebase Crash Reporting` to track crashe in my application. Whenever a crash occured it send the crash report on firebase and notified me on my emailId. It help me to solve those crashes and making application crash free.
+A good application has few crashes. It's hard to find all crash in the application while testing. There might be many undiscovered crashes during testing phase. Use of `Firebase Crash Reporting` to track crashes in application is recommended and whenever a crash occurs it sends the crash report on firebase and notified developer on his/her emailId. It helps me to solve those crashes and making application crash free.
 
-## Explore Crash Report
+## Exploring Crash Report
 
-User can have version and error type specific crash reports.
+following are the few items which firebase provides.
 
-* `Instances` number of error which occurred.
-* `Users imapacted` number of users who experienced an error.
-* `Issues` number of Issues. Group of exception with similar stacktrace known as `Cluster`
-* `Error-free users` user percent who haven't encounter error.
-* `Versions` version of app on which crash occoured.
+* `Instances` number of errors occurred.
+* `Users impacted` number of users who experienced an error.
+* `Issues` number of Issues. Group of exception with similar stack trace known as `Cluster`
+* `Error-free users` user percent who haven't encounter an error.
+* `Versions` version of the app on which crash occurred.
 * `Stack trace` abbreviated version of the stack trace.
 
 <img src="/static/firebase_crash_report.png" alt="Drawing" style="width: 600px;"/>
@@ -35,13 +36,13 @@ User can have version and error type specific crash reports.
 
 ## Analytics events in Crash Logs
 
-Firebase Analytics events are now added to your crash logs, which gives you a more complete view of the state of your app leading up to crash.
+Firebase Analytics events are now added to your crash logs, which gives you a complete view of the state of your app leading up to crash.
 
 ## Additional feature
 
-* Can send custom crash log to firebase cosole.
-* Can get email alert for crash.
+* Can send the custom crash log to Firebase console.
+* Can get an email alert for the crash.
 
 ## Conclusion
 
-`Firebase Crash Reporting` is one of the most important tool of `Firebase` to make your app better and crash free.
+`Firebase Crash Reporting` is one of the most important tools of `Firebase` to make your app better and crash free. We are using it in many applications we are working on.
