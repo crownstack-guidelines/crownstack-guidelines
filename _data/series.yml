@@ -17,3 +17,8 @@
   desc: |
     Applying best-practices to art of programming
   tag_name: devops
+
+- name: FrontEnd
+  desc: |
+    Applying best-practices to art of programming
+  tag_name: frontend

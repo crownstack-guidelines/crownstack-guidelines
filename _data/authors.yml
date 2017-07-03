@@ -31,3 +31,11 @@ Gautam Singh:
   avatar      : "/static/Gautam.jpeg"
   twitter     : "https://twitter.com/@gautams04"
   github      : "https://github.com/gautam-s04"
+  
+Ajay Upreti:
+  name        : "Ajay Upreti"
+  email       : "ajay.upreti@crownstack.com"
+  bio         : "I am an Front End developer at CrownStack."
+  avatar      : "/static/Ajay.jpg"
+  twitter     : "https://twitter.com/ajayupreti9"
+  github      : "https://github.com/ajayupreti" 
