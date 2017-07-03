@@ -1,7 +1,16 @@
-I have planned to start writing about AngularJS. I have begun to learn AngularJS a few months back, it's a great feature for website UI developers.
+---
+title:  "My Experiments with AngularJS"
+date: 2017-06-30
+author: Ajay Upreti
+categories:
+- blog
+tags:
+- frontend
+---
+
+I have planned to start writing about AngularJS. I have begun to learn AngularJS a few months back, it's a great framework for website UI developers.
 
 * AngularJS version 1.0 was released in 2012.
-
 * Reference for Angular js Tutorial: W3Schools, Tutorialspoint and C# Corner.
 
 ### AngularJS Basics
@@ -61,7 +70,7 @@ AngularJS extends HTML with **ng-directives**.
 **Step 2 − Define AngularJS Application using ng-app directive**
 
 ```
-<div ng-app = ""> 
+<div ng-app = "">
   ...
 </div>
 ```
@@ -78,21 +87,21 @@ AngularJS extends HTML with **ng-directives**.
 
 ```
 <html>
-   
+
    <head>
       <title>First AngularJS  App</title>
    </head>
-   
+
    <body>
      <h1>Sample Application</h1>
-      
+
      <div ng-app = "">
          <p>Enter your Name: <input type = "text" ng-model = "name"></p>
          <p>Hello <span ng-bind = "name"></span></p>
      </div>
-      
+
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
-      
+
    </body>
 </html>
 ```
@@ -107,6 +116,3 @@ AngularJS extends HTML with **ng-directives**.
 * **Streamlined directives**—Creating your own directives has gotten even easier with the new @Directive annotation, simply set your selector, properties, and host listeners.
 * **ECMAScript 6 (ES6)**—Angular 2.0 supports the latest JavaScript standard.
 * **Support for TypeScript**— great news for.NET developers, Microsoft’s open-source extension to ES6 will be supported by Angular 2. That means you get access to all the advantages, libraries, and technologies associated with TypeScript.
-
-
-
