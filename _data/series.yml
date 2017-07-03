@@ -12,3 +12,8 @@
   desc: |
     Applying best-practices to art of programming
   tag_name: programming
+
+- name: Dev Ops
+  desc: |
+    Applying best-practices to art of programming
+  tag_name: devops
