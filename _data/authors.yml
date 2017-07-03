@@ -15,6 +15,22 @@ Prinsu Kumar:
   avatar      : "/static/Prinsu.jpeg"
   twitter     : "https://twitter.com/pkvarnwal"
   github      : "https://github.com/pkvarnwal"
+
+Ashutosh Singh:
+  name        : "Ashutosh Singh"
+  email       : "ashutosh.singh@crownstack.com"
+  bio         : "I am an Android developer at CrownStack."
+  avatar      : "/static/AshutoshSingh.jpg"
+  twitter     : "https://twitter.com/_AshutoshSingh3"
+  github      : "https://github.com/ashutoshsingh33"
+
+Gautam Singh:
+  name        : "Gautam Singh"
+  email       : "gautam.bhadauria@crownstack.com"
+  bio         : "Backend Developer at CrownStack."
+  avatar      : "/static/Gautam.jpeg"
+  twitter     : "https://twitter.com/@gautams04"
+  github      : "https://github.com/gautam-s04"
   
 Ajay Upreti:
   name        : "Ajay Upreti"
