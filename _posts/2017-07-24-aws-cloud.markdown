@@ -1,0 +1,103 @@
+---
+title:  "AWS Cloud for SME Project"
+date:   2017-07-24
+author: Gautam Singh
+categories:
+- blog
+tags:
+- cloud computing
+---
+
+### AWS Cloud for SME Projects
+
+**Amazon Web Services**
+
+AWS combines a large set of services for deploying Small-Medium-Enterprise(SME) Project. For computation a compute engine using virtualization technology to provision (virtual Machine)VM. Amazon EC2(Elastic Compute Cloud) handles computing services. Every service has a tight integration with Amazon Identity and Access Management(IAM). For networking, Amazon has VPC which provides an isolated virtual network for virtual servers. 
+
+**Key Services**
+The following are the key computing, networking, and storage services.
+
+* **Amazon EC2**
+
+Provide virtual servers in the AWS Cloud.
+
+* **Amazon VPC**
+
+provides an isolated virtual network for virtual servers.
+
+* **Elastic Load Balancing**
+
+Distributes your network traffic across your set of virtual servers.
+
+* **Auto Scaling**
+
+Automatically scales your set of virtual servers based on changes in demand.
+
+* **Amazon Route S3**
+
+Route traffic to your domain name to a resource, such as a virtual server or a load balancer.
+
+* **AWS Lambda**
+
+Runs your code on a virtual server from Amazon EC2 in response to events.
+
+* **Amazon ECS**
+
+Provide docker containers on virtual server from amazon EC2.
+
+* **Amazon S3**
+
+Provides both object and block storage, Amazon simple storage service(S3) is elastic volume.
+
+* **Amazon SES**
+
+Provides SMTP server to route email using SMTP relay.
+
+
+**Key Concepts **
+
+The following are the concept you should understand before using this computing, networking and storage service.
+
+**Instance and AMI**
+
+An instance in cloud computing refers to Virtual Machine with computing resources(Like RAM, CPU). Creating an instance in Amazon EC2. Just select the EC2 and then create an instance, select your computing resources and from (Amazon Image Management)AMI select an OS image.
+
+These images are pre-configured OS. They come with already setup password and environment. In AMI(Amazon Image Management), you have the freedom to add your custom image and also create a snapshot of your running VM.
+
+![Amazon Instance](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/images/architecture_ami_instance.png)
+
+**VPC and Subnets**
+
+A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS cloud, providing security and robust networking functionality for your computing resources. A VPC closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
+
+A subnet is a segment of a VPC's IP address range that you can launch instances into. Subnets enable you to group instances based on your security and operational needs. To enable instances in a subnet to reach the Internet and AWS services, you must add an Internet gateway to the VPC and a route table with a route to the Internet to the subnet.
+
+Amazon Security group act as a virtual firewall for your virtual machine to control inbound and outbound traffic.
+
+![VPC-subnet-with-security-group](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/images/security_group.png)
+
+**Auto Scaling Groups**
+
+Auto Scaling supports groups of virtual servers, an Auto Scaling group that can grow or shrink on demand.
+
+![Auto Scaling](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/images/auto_scaling_group.png)
+
+**Load Balancer**
+
+A load balancer distributes traffic to multiple instances. You can achieve even higher levels of fault tolerance by using your load balancer with instances in multiple Availability Zones. As instances are launched and terminated, the load balancer automatically directs traffic to the running instances. Elastic Load Balancing also performs health checks on each instance. If an instance is not responding, the load balancer can automatically redirect traffic to the healthy instances. The load balancer also configured with traffic distribution algorithm.
+![Load Balancer](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/images/load_balancer.png)
+
+
+**Architecture**
+
+The following diagram shows an example architecture for your computing and networking services. There are EC2 instances in public and private subnets. Access to the instances in the public subnets over protocols like SSH or RDP is controlled by one or more security groups. Security groups also control whether the instances can talk to each other. The Auto Scaling group maintains a fleet of EC2 instances that can scale to handle the current load. This Auto Scaling group spans multiple Availability Zones to protect against the potential failure of a single Availability Zone. The load balancer distributes traffic evenly among the EC2 instances in the Auto Scaling group. When the Auto Scaling group launches or terminates instances based on load, the load balancer automatically adjusts accordingly. Amazon Route 53 provides secure and reliable routing of your domain name to your infrastructure hosted on AWS.
+
+![architecture](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/images/compute_architecture.png)
+
+
+**Slack Deployment on AWS Cloud Architecture**
+
+![Slack AWS Arxhitecture](https://d0.awsstatic.com/architecture-diagrams/customers/slack-arch-diagram.png)
+
+
+
