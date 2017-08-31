@@ -50,7 +50,9 @@ The percentage value represents the amount of increase or decrease and solid lin
 
 #### In-App purchases
 * Users : number and percentage of users who have completed in-app transactions (in_app_purchase).
+
 * Count : number of transactions, and percentage change from comparison period.
+
 * Value : revenue from transactions, and percentage change from comparison period.
 
 #### App version
@@ -58,6 +60,7 @@ A number of the app user for top three version and other(which include the sum o
 
 ####  Devices
 * Percentage of users on each of the top three device models and other(which include the sum of all other devices).
+
 * Percentage of users on each of the top two OS versions and other(which include the sum of all other OS version).
 
 #### Location
@@ -74,7 +77,9 @@ Events show the list of events which triggered in app during the range(date rang
 
 Firebase provides the following metrics for each event:
 * Users: number of users who triggered the event.
+
 * Count per user: average number of times per user that the event was triggered.
+
 * Value: the sum of all VALUE parameters supplied with the event. Use this context-sensitive metric to track any data that is valuable to your app (e.g., revenue, time, distance).
 
 There are some events that are automatically triggered for firebase for more information https://support.google.com/firebase/answer/6317485?hl=en. You can log events with the `logEvent()` method.
@@ -94,16 +99,23 @@ You can combine events and user properties into Firebase audiences. You can perf
 
 Use audiences to:
 * Filter reports so you can analyze how different user segments engage with your app
+
 * Target Notifications to individual audiences
+
 * Target Remote Config to deliver custom experiences to different audiences
 
 To create a new audience:
 
 * In Firebase, click the Audiences tab.
+
 * Click NEW AUDIENCE.
+
 * Enter a name and description for the audience. This name and description will allow you to identify the audience in the management table.
+
 * Click Select Event or User Property.
+
 * Create one or more conditions that define who should be included in this audience. You can create conditions that include the users who have taken specific actions(Event) or who share a property(User Property). Combine multiple conditions with OR or AND.
+
 * Click Create to save your condition(s) and create the audience.
 
 
