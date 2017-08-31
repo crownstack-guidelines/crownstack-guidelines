@@ -147,7 +147,7 @@ To delete data, you can simply call `removeValue()` method on to database refere
 ```
 mDatabaseReference.child(id).setValue(null);
 ```
-Where id is the node which have to delete.
+Where `id` is the node which has to be deleted.
 
 
 #### References
