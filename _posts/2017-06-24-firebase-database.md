@@ -28,7 +28,7 @@ Realtime Database is one of the most important features of App development nowad
  The Realtime Database API is designed to only allow operations that can be executed quickly. Firebase Database Rules defines which user can read or write to the database. These rules are automatically applied to all query automatically. By default, rules are set to allow only authenticated users full read and write access to the database. There is four rule type for firebase.
  * read: allow the user to read.
  * write: allow the user to write.
- * validation: allows you to apply validation logic using the same expressions used for .read and .write rules.
+ * validate: allows you to apply validation logic using the same expressions used for .read and .write rules.
  * indexOn: to specify ordering and querying data.
 
 ### Enable Offline Capabilities
