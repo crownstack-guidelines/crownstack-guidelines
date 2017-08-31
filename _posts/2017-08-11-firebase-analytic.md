@@ -49,9 +49,9 @@ The percentage value represents the amount of increase or decrease and solid lin
 * User engagement per screen: Analytics automatically tracks some information about screens in your application, such as the class name of the `UIViewController` or `Activity` that is currently in focus. When a screen transition occurs, Analytics logs a screen_view event that identifies the new the .
 
 #### In-App purchases
-* Users: number and percentage of users who have completed in-app transactions (in_app_purchase).
-* Count: number of transactions, and percentage change from comparison period.
-* Value: revenue from transactions, and percentage change from comparison period.
+* Users : number and percentage of users who have completed in-app transactions (in_app_purchase).
+* Count : number of transactions, and percentage change from comparison period.
+* Value : revenue from transactions, and percentage change from comparison period.
 
 #### App version
 A number of the app user for top three version and other(which include the sum of all other versions).
@@ -101,9 +101,9 @@ To create a new audience:
 
 * In Firebase, click the Audiences tab.
 * Click NEW AUDIENCE.
-* Enter a name and description for the audience. This name and description will allow you to identify the audience in the management table.
+* Enter a name and description for the audience. This name and description will allow you to identify the  audience in the management table.
 * Click Select Event or User Property.
-* Create one or more conditions that define who should be included in this audience. You can create conditions that include the users who have taken specific actions (Event) or who share a property (User Property). Combine multiple conditions with OR or AND.
+* Create one or more conditions that define who should be included in this audience. You can create conditions that include the users who have taken specific actions(Event) or who share a property(User Property). Combine multiple conditions with OR or AND.
 * Click Create to save your condition(s) and create the audience.
 
 
