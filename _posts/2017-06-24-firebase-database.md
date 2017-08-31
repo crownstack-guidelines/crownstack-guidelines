@@ -1,5 +1,5 @@
 ---
-title:  "Firebase Realtime Database"
+title:  "Explore Firebase Realtime Database"
 date:   2017-06-24
 author: Ashutosh Singh
 categories:
@@ -9,7 +9,7 @@ tags:
 ---
 
 
-Realtime Database is one of the most important features of App development nowadays. It is required to handle data synchronization between client and server. It's much challenging to create a mobile app that allows the user to access data from any device. We need to create API or web services to handle this. All of these challenges can fulfill by using `Firebase Realtime Database`.
+Realtime Database is one of the most important features of App development nowadays. It is required to handle data synchronization between client and server. It's challenging to create a mobile app that allows the user to access data from any device. We need to create API or web services to handle this. All of these challenges can be fulfilled by using `Firebase Realtime Database`.
 
 ### Firebase Realtime Database
 
@@ -33,8 +33,8 @@ Realtime Database is one of the most important features of App development nowad
 
 ### Enable Offline Capabilities
 
-Firebase app automatically handles the temporary network issue. Firebase used to cached data for user better experience. It persists user data to disk. Cached data is available while offline.
-Ddeveloper can enable disk persistence with just one line of code.
+Firebase app automatically handles the temporary network issue. Firebase uses cached data for better user experiences. It persists user data to disk. Cached data is available while offline.
+Developer can enable disk persistence with just one line of code.
 ```
 FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 ```
@@ -44,13 +44,13 @@ FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 This is my firebase database structure.
 <img src="/static/firebase_database.png" alt="Drawing" style="width: 600px;"/>
 
-To perform any operations on database we need developer need to get the reference of database
+To perform any operations on database, developer needs to get the reference of database
 
 ```
 private DatabaseReference mDatabase;
 mDatabase = FirebaseDatabase.getInstance().getReference();
 ```
-It return the reference of top node. If developer need the reference of a perticular node then developer have to pass the node . The below code will return the reference of  `chat` node.
+It returns the reference of top node. If developer needs the reference of a perticular node then developer have to pass the node . The below code will return the reference of  `chat` node.
 ```
 mDatabase = FirebaseDatabase.getInstance().getReference("chat");
 ```

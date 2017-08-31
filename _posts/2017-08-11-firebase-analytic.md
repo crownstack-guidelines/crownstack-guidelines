@@ -1,5 +1,5 @@
-fi---
-title:  "Firebase Crash Report"
+---
+title:  "Understand user behavior using Firebase Analytics"
 date:   2017-08-11
 author: Ashutosh Singh
 categories:
@@ -9,7 +9,7 @@ tags:
 ---
 
 
-Firebase Analytics is an analytics solution to help you gain observation on what users are doing with your app. It gives you many different reports(Active User, Cohort, etc.) and filters to help you understand how your app is progressing toward your goals. Analytics reports help you understand clearly how your users behave, which enables you to make informed decisions regarding app marketing and performance optimizations.
+Firebase Analytics is an analytics solution to help you gain insights on what users are doing with your app. It gives you many different reports(Active User, Cohort, etc.) and filters to help you understand how your app is progressing toward your goals. Analytics reports help you understand clearly how your users behave, which enables you to make informed decisions regarding app marketing and performance optimizations.
 
 ### Key Feature of Firebase Analytics
 
@@ -105,3 +105,7 @@ To create a new audience:
 * Click Select Event or User Property.
 * Create one or more conditions that define who should be included in this audience. You can create conditions that include the users who have taken specific actions (Event) or who share a property (User Property). Combine multiple conditions with OR or AND.
 * Click Create to save your condition(s) and create the audience.
+
+
+#### References
+https://firebase.google.com/docs/analytics/
