@@ -1,5 +1,5 @@
 ---
-title:  "Explore Firebase Realtime Database"
+title:  "Building offline capabilities with Firebase Realtime Database"
 date:   2017-06-24
 author: Ashutosh Singh
 categories:
