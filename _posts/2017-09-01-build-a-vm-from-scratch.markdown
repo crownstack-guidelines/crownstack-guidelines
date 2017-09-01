@@ -11,7 +11,7 @@ tags:
 ## Build a Virtual Machine From Scratch
 > Creating and Optimizing Virtual Machine
 
-Virtual Machine is a robust concept to achieve Platform Independent Design for various Platform (Operating System: Windows, Linux, Mac). These Programming languages are designed above the layer of Core Architecture (x86, x86_64) and rely on OS System Calls. The code is compiled and Interpreted to Machine Languages(Binary Language). Now, the question arises how this virtual machine attains platform independence for Programming Languages like Java. Lua and Python etc. Virtual Machines provides an Abstraction Layer for these PL. In any platform, these languages generated an Intermediate Code which is understandable by Virtual Machines and Each VM is designed for every platform.
+Virtual machine is a robust concept to achieve platform independent design for various platforms (operating system: windows, linux, mac). These programming languages are designed above the layer of core architecture (x86, x86_64) and rely on OS system calls. The code is compiled and interpreted to machine languages(binary language). Now, the question arises how this virtual machine attains platform independence for programming languages like Java. Lua and Python etc. Virtual Machines provides an abstraction layer for these programming languages. In any platform, these translators generates an intermediate code which is understandable by virtual machines and  designed for every platform.
 
 ### Tools required to build a Virtual Machine
 * GCC/Clang, G++, GDB, CMAKE
@@ -21,18 +21,18 @@ Virtual Machine is a robust concept to achieve Platform Independent Design for v
 
 ### Why you should write a Virtual Machine
 
-* You want a deeper understanding of how a computer works. Low-level instructions executed on CPU(Addressing Modes).
-So, to understand VM, a Better way is to build it.
+* You want a deeper understanding of how a computer works. Low-level instructions executed on CPU(addressing modes).
+So, to understand virtual machine, a better way is to build it.
 
-* Learn how a Programming works, Its internal Architecture. Moreover how to optimize a virtual machine (Instruction and Memory). JIT(Jist-In-Time Compiler) is used in JVM, Python VM, and various other programming languages. And GC(Garbage Collector) to avoid Memory Leakages and a better way to organize main memory. 
+* Learn how a programming language works, Its internal architecture. Moreover how to optimize a virtual machine (instruction and memory). JIT(Jist-In-Time compiler) is used in JVM, Python VM, and various other programming languages. And GC(Garbage Collector) to avoid memory leakages and a better way to organize main memory. 
 
 ### CPU Architecture
 
-The processor in a computer responsible for executing Instruction and Performing Hardware Interactions. The processor has a Manual of Mnemonics(Assembly Language Instruction) which wraps binary language instruction. The bandwidth of the processor decides the number of instruction is going to execute in a machine cycle. Which known as the frequency of the processor. The processor also contains General Purpose Register(GPR) like A,B,C,D,E.  These register stores information of various operation going to be performed in a  next cycle. They also have special purpose registers like Flags, DS, and various other segments to control instructions flow.
+The processor in a computer responsible for executing instruction and performing hardware interactions. The processor has a manual of Mnemonics(assembly language instruction) which wraps binary language instruction. The bandwidth of the processor decides the number of instruction is going to execute in a machine cycle. Which known as the frequency of the processor. The processor also contains General Purpose Register(GPR) like A,B,C,D,E.  These register stores information of various operation going to be performed in a next cycle. They also have special purpose registers like flags, DS, and various other segments to control instructions flow.
 
 ### Stack based Virtual Machine
 
-In the stack based virtual machine, which means it's a stack which can perform operations like Push(For Insertion), Pop(For Deletion). These are simpler to implement than Register based Virtual Machine.
+In the stack based virtual machine, which means it's a stack which can perform operations like Push(insertion), Pop(deletion). These are simpler to implement than register based virtual machine.
 
 |  Instruction         | Meaning                                                       |
 |----------------------|---------------------------------------------------------------|
@@ -44,10 +44,10 @@ In the stack based virtual machine, which means it's a stack which can perform o
 |  HALT                | Stop the Program                                              |
 
 ### Instruction Cycle
-Virtual Machines are simpler than you might think. They follow a Simple Pattern, which is **Instruction Cycle** Fetch, Decode and Execute. First, we fetch the next instruction list or code, we then decode that instruction and add to the instruction set and executes that instruction.
+Virtual machines are simpler than you might think. They follow a simple pattern, which is **Instruction Cycle** Fetch, Decode and Execute. First, we fetch the next instruction list or code, we then decode that instruction and add to the instruction set and executes that instruction.
 
 ###  Makefile
-Makefile is used to automate and resolve dependency for our project. C/C++ files need to be compiled each files compilation manually will take a long time and order of their compilation will be a memorize tasks. Makefile does these task with a configuration on various platform. When Linux introduced software were written in such a way for years.
+Makefile is used to automate and resolve dependency for our project. C/C++ files need to be compiled each files compilation manually will take a long time and order of their compilation will be a memorize tasks. Makefile does these task with a configuration on various platforms. When Linux introduced software were written in such a way for years.
 
     SRC_FILES = main.c
     CC_FLAGS = -Wall -Wextra -g -std=c11
@@ -68,7 +68,7 @@ We know the assembly instruction needs to be executed then simply put this instr
        HLT
     } InstructionSet;
 
-Now, Storing the actual instruction which is to be executed on the Processor. Storing these instruction set in Array.
+Now, storing the actual instruction which is to be executed on the processor. Storing these instruction set in Array.
 
     const int program[] = {
        PSH, 5,
@@ -79,7 +79,7 @@ Now, Storing the actual instruction which is to be executed on the Processor. St
     };
 
 **Fetching the Current Instruction**
-We have stored our instruction in an Array. It will be easy to fetch instruction, but Virtual Machine also holds a variable to know the instruction executing known as a Program Counter, Instruction Pointer.
+We have stored our instruction in an array. It will be easy to fetch instruction, but virtual machine also holds a variable to know the instruction executing known as a Program Counter(PC), Instruction Pointer(IP).
 
     #include <stdbool.h>
     #include<stdio.h>
