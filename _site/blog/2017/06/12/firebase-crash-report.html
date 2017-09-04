@@ -1,0 +1,43 @@
+<p>Crash Reporting is an important feature nowadays. It is used to know that when your app gets crashed and which type of error occurred. There are many tools such as Acra, Sentry, etc. <code class="highlighter-rouge">Firebase Crash Reporting</code> is one of them.</p>
+
+<p><code class="highlighter-rouge">Firebase Crash Reporting</code> generate detail error report of application which takes few minutes(about 20 minutes according to the Firebase docs), to appear on Crash Reporting console. Also, it is super easy to integrate.</p>
+
+<h2 id="improve-application-by-firebase-crash-report">Improve application by Firebase Crash Report</h2>
+
+<p>A good application has few crashes. It’s hard to find all crash in the application while testing. There might be many undiscovered crashes during testing phase. Use of <code class="highlighter-rouge">Firebase Crash Reporting</code> to track crashes in application is recommended and whenever a crash occurs it sends the crash report on firebase and notified developer on his/her emailId. It helps me to solve those crashes and making application crash free.</p>
+
+<h2 id="exploring-crash-report">Exploring Crash Report</h2>
+
+<p>following are the few items which firebase provides.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Instances</code> number of errors occurred.</li>
+  <li><code class="highlighter-rouge">Users impacted</code> number of users who experienced an error.</li>
+  <li><code class="highlighter-rouge">Issues</code> number of Issues. Group of exception with similar stack trace known as <code class="highlighter-rouge">Cluster</code></li>
+  <li><code class="highlighter-rouge">Error-free users</code> user percent who haven’t encounter an error.</li>
+  <li><code class="highlighter-rouge">Versions</code> version of the app on which crash occurred.</li>
+  <li><code class="highlighter-rouge">Stack trace</code> abbreviated version of the stack trace.</li>
+</ul>
+
+<p><img src="/static/firebase_crash_report.png" alt="Drawing" style="width: 600px;" /></p>
+
+<ul>
+  <li>Provide additional data such as user location, network provider, device detail and performance.</li>
+</ul>
+
+<p><img src="/static/firebase_crash_report_additional_data.png" alt="Drawing" style="width: 600px;" /></p>
+
+<h2 id="analytics-events-in-crash-logs">Analytics events in Crash Logs</h2>
+
+<p>Firebase Analytics events are now added to your crash logs, which gives you a complete view of the state of your app leading up to crash.</p>
+
+<h2 id="additional-feature">Additional feature</h2>
+
+<ul>
+  <li>Can send the custom crash log to Firebase console.</li>
+  <li>Can get an email alert for the crash.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><code class="highlighter-rouge">Firebase Crash Reporting</code> is one of the most important tools of <code class="highlighter-rouge">Firebase</code> to make your app better and crash free. We are using it in many applications we are working on.</p>
