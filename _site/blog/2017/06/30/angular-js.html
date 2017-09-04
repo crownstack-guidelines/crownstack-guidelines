@@ -1,0 +1,137 @@
+<p>I have planned to start writing about AngularJS. I have begun to learn AngularJS a few months back, it’s a great framework for website UI developers.</p>
+
+<ul>
+  <li>AngularJS version 1.0 was released in 2012.</li>
+  <li>Reference for Angular js Tutorial: W3Schools, Tutorialspoint and C# Corner.</li>
+</ul>
+
+<h3 id="angularjs-basics">AngularJS Basics</h3>
+
+<p>AngularJS is a full featured JavaScript framework, with the core goal of simplification. It excels at building dynamic, single page web apps and supports the Model View Controller (MVC) programming structure. It powers sites include Google, Virgin America, and HBO’s mobile site for iPad. Other highlights:</p>
+
+<ul>
+  <li>Open-source, front-end JavaScript framework developed by Google</li>
+  <li>Encourages the developer to use modular building blocks of JavaScript code that can be categorized and are easy to test</li>
+  <li>Can be added to any HTML page with a <script> tag</script>
+</li>
+</ul>
+
+<h3 id="tech-differentiators-of-angularjs-include">Tech differentiators of AngularJS include:</h3>
+
+<ul>
+  <li>Two-way data bindings</li>
+</ul>
+
+<p><img src="https://docs.angularjs.org/img/Two_Way_Data_Binding.png" alt=""></p>
+
+<ul>
+  <li>Controllers</li>
+  <li>Expressions, which bind data to HTML</li>
+  <li>$Scope, a novel way of handling variable dependency and global variables</li>
+  <li>Directives, which extend HTML attributes. “Extending” is the key to how AngularJS works</li>
+</ul>
+
+<p><img src="https://qph.ec.quoracdn.net/main-qimg-e4fd26b9a1713b64a0f2915bc32527e6.webp" alt=""></p>
+
+<h3 id="why-to-use-angularjs">Why to use AngularJS</h3>
+
+<p>AngularJS gives you everything you need to build the client-side of an application. It will also make it easier to keep your web project organized and modular to avoid repeating code. Advanced features like two-way data binding and dependency injection allow you to quickly create visually stunning and engaging applications that would otherwise take months of development time if you used vanilla JavaScript and jQuery.</p>
+
+<ul>
+  <li>
+<strong>AngularJS is opinionated.</strong> As a comprehensive client-side solution, AngularJS is naturally opinionated on how a CRUD application should be developed. That means there is definitely an “Angular” way of building a web project, and you’ll need to check with the development team as to whether AngularJS is a right fit for your project’s development workflow.</li>
+  <li>
+<strong>Not all projects require a framework as robust as AngularJS.</strong> For simpler websites, there are lighter weight frameworks like Backbone.js that are better suited to the task.</li>
+  <li>
+<strong>Not suited for data intensive or tricky DOM manipulation.</strong> AngularJS uses “dirty checking” when managing changes to the DOM—the AngularJS digest checks all variables watched by all $scopes for changes. Any value change among any of the variables forces an update of the DOM.</li>
+</ul>
+
+<h3 id="best-angularjs-world-known-applications-created">Best AngularJS world known applications created:</h3>
+
+<ul>
+  <li>PayPal</li>
+  <li>Netflix</li>
+  <li>Weather</li>
+  <li>The Guardian</li>
+  <li>Lego</li>
+</ul>
+
+<h3 id="i-will-describe-the-components-of-angularjs-with-suitable-examples-">I will describe the components of AngularJS with suitable examples-</h3>
+
+<p>AngularJS extends HTML with <strong>ng-directives</strong>.</p>
+
+<ul>
+  <li>
+    <p><strong>ng-app</strong> − This directive defines and links an AngularJS application to HTML.</p>
+  </li>
+  <li>
+    <p><strong>ng-model</strong> − This directive binds the values of AngularJS application data to HTML input controls.</p>
+  </li>
+  <li>
+    <p><strong>ng-bind</strong> − This directive binds the AngularJS Application data to HTML tags.</p>
+  </li>
+</ul>
+
+<p><strong>Step 1 − Load framework</strong></p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"&gt;
+</code></pre>
+</div>
+
+<p><strong>Step 2 − Define AngularJS Application using ng-app directive</strong></p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;div ng-app = ""&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p><strong>Step 3 − Define a model name using ng-model directive</strong></p>
+
+<p><code class="highlighter-rouge">&lt;p&gt;Enter your Name: &lt;input type = "text" ng-model = "name"&gt;&lt;/p&gt;</code></p>
+
+<p><strong>Step 4 − Bind the value of above model defined using ng-bind directive.</strong></p>
+
+<p><code class="highlighter-rouge">&lt;p&gt;Hello &lt;span ng-bind = "name"&gt;&lt;/span&gt;!&lt;/p&gt;</code></p>
+
+<h3 id="first-angularjs--application">First AngularJS  Application</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+
+   <span class="nt">&lt;head&gt;</span>
+      <span class="nt">&lt;title&gt;</span>First AngularJS  App<span class="nt">&lt;/title&gt;</span>
+   <span class="nt">&lt;/head&gt;</span>
+
+   <span class="nt">&lt;body&gt;</span>
+     <span class="nt">&lt;h1&gt;</span>Sample Application<span class="nt">&lt;/h1&gt;</span>
+
+     <span class="nt">&lt;div</span> <span class="na">ng-app =</span><span class="err"> </span><span class="s">""</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;p&gt;</span>Enter your Name: <span class="nt">&lt;input</span> <span class="na">type =</span><span class="err"> </span><span class="s">"text"</span> <span class="na">ng-model =</span><span class="err"> </span><span class="s">"name"</span><span class="nt">&gt;&lt;/p&gt;</span>
+         <span class="nt">&lt;p&gt;</span>Hello <span class="nt">&lt;span</span> <span class="na">ng-bind =</span><span class="err"> </span><span class="s">"name"</span><span class="nt">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+     <span class="nt">&lt;/div&gt;</span>
+
+     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="nt">&gt;</span><span class="err">
+
+   &lt;/body&gt;
+&lt;/html&gt;
+</span></code></pre>
+</div>
+<h3 id="output">OUTPUT</h3>
+
+<p><img src="http://dotnetpattern.com/Images/AngularJS_Sample_Application_UI.png" alt=""></p>
+
+<h3 id="everything-changes-with-angular-20">EVERYTHING CHANGES WITH ANGULAR 2.0</h3>
+
+<ul>
+  <li>
+<strong>Angular 2 is based entirely on components</strong>—say goodbye to $scope and controllers, and hello to <a href="https://github.com/components" class="user-mention">@components</a>, Angular’s latest take on the dependency injection model. A component is basically a directive with a template.</li>
+  <li>
+<strong>Streamlined directives</strong>—Creating your own directives has gotten even easier with the new <a href="https://github.com/Directive" class="user-mention">@Directive</a> annotation, simply set your selector, properties, and host listeners.</li>
+  <li>
+<strong>ECMAScript 6 (ES6)</strong>—Angular 2.0 supports the latest JavaScript standard.</li>
+  <li>
+<strong>Support for TypeScript</strong>— great news for.NET developers, Microsoft’s open-source extension to ES6 will be supported by Angular 2. That means you get access to all the advantages, libraries, and technologies associated with TypeScript.</li>
+</ul>

@@ -9,3 +9,14 @@ include: ["_pages"]
 gems:
   - jekyll-sitemap
   - jemoji
+  - jekyll-gist
+  - jekyll-coffeescript
+  - jekyll-mentions
+  - jekyll-paginate
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-coffeescript
+  - jekyll-gist
+  - jekyll-mentions
+  - jekyll-paginate
+  - jekyll-redirect-from

@@ -1,0 +1,161 @@
+<p>Firebase Analytics is an analytics solution to help you gain insights on what users are doing with your app. It gives you many different reports(Active User, Cohort, etc.) and filters to help you understand how your app is progressing toward your goals. Analytics reports help you understand clearly how your users behave, which enables you to make informed decisions regarding app marketing and performance optimizations.</p>
+
+<h3 id="key-feature-of-firebase-analytics">Key Feature of Firebase Analytics</h3>
+
+<ul>
+  <li>
+    <p>Unlimited Reporting: Analytics provides unlimited reporting on up to 500 distinct events.</p>
+  </li>
+  <li>
+    <p>Audience Segmentation: Custom audiences can be defined in the Firebase console based on device data, custom events, or user properties. These audiences can be used with other Firebase features when targeting new features or notification messages.</p>
+  </li>
+</ul>
+
+<h3 id="dashboard">Dashboard</h3>
+
+<h4 id="active-users">Active Users</h4>
+<p>Active users are plotted by time.</p>
+
+<ul>
+  <li>
+    <p>Monthly:  The number of unique users who engaged with the app in the previous 30 days leading up to the last day of the date range.</p>
+  </li>
+  <li>
+    <p>Weekly: The number of unique users who engaged with the app in the previous 7 days leading up to the last day of the date range.</p>
+  </li>
+  <li>
+    <p>Daily: The number of unique users who engaged with the app on the last day of the date range.</p>
+  </li>
+</ul>
+
+<h4 id="average-revenue">Average revenue</h4>
+<p>Average revenue shows the <code class="highlighter-rouge">average revenue per user (ARPU)</code> and <code class="highlighter-rouge">average revenue per paying user (ARPPU)</code> for the monthly, weekly, daily active user. Revenue is the sum of ecommerce_purchase and in_app_purchase event value. ARPU is revenue divided by the total users for the given time periods. ARPPU is revenue divided by the users who have purchased during the given time periods.</p>
+
+<h4 id="first_open-attribution">first_open attribution</h4>
+<p>The number of times the app was opened after installing or re-installing it. <code class="highlighter-rouge">first_open</code> attribution event is not raised when the user downloads the app from <code class="highlighter-rouge">Play store</code> or <code class="highlighter-rouge">iTunes</code>.</p>
+
+<h4 id="retention-cohort">Retention cohort</h4>
+<p>A <code class="highlighter-rouge">cohort</code> is a set of users who started using your app at the same time (such as on the same day, or during the same week). The bottom row represents the most recent cohort. The top row step represents the earliest cohort. Darker shading indicates that a higher percentage of users returned to use the app again. Over time, the shading becomes lighter as fewer users return to use the app.</p>
+
+<h4 id="user-engagement">User engagement</h4>
+<p>The percentage value represents the amount of increase or decrease and solid line in the graph shows engagement trends according to user engagement(Daily engagement, Daily engagement per user and Session per user) respectively.</p>
+
+<ul>
+  <li>
+    <p>Daily engagement: Sum of user engagement time for all users. The percentage value represents the amount of increase or decrease in user engagement. The solid line in the graph shows total daily engagement trends.</p>
+  </li>
+  <li>
+    <p>Daily engagement per user: Average engagement duration per user.</p>
+  </li>
+  <li>
+    <p>Sessions per user: Total number of sessions divided by the number of active users.</p>
+  </li>
+  <li>
+    <p>User engagement per screen: Analytics automatically tracks some information about screens in your application, such as the class name of the <code class="highlighter-rouge">UIViewController</code> or <code class="highlighter-rouge">Activity</code> that is currently in focus. When a screen transition occurs, Analytics logs a screen_view event that identifies the new the .</p>
+  </li>
+</ul>
+
+<h4 id="in-app-purchases">In-App purchases</h4>
+<ul>
+  <li>
+    <p>Users : number and percentage of users who have completed in-app transactions (in_app_purchase).</p>
+  </li>
+  <li>
+    <p>Count : number of transactions, and percentage change from comparison period.</p>
+  </li>
+  <li>
+    <p>Value : revenue from transactions, and percentage change from comparison period.</p>
+  </li>
+</ul>
+
+<h4 id="app-version">App version</h4>
+<p>A number of the app user for top three version and other(which include the sum of all other versions).</p>
+
+<h4 id="devices">Devices</h4>
+<ul>
+  <li>
+    <p>Percentage of users on each of the top three device models and other(which include the sum of all other devices).</p>
+  </li>
+  <li>
+    <p>Percentage of users on each of the top two OS versions and other(which include the sum of all other OS version).</p>
+  </li>
+</ul>
+
+<h4 id="location">Location</h4>
+<p>Percentage of sessions from each of your top countries.</p>
+
+<h4 id="demographics">Demographics</h4>
+<p>Percentage of male and female users, by age group.</p>
+
+<h4 id="interests">Interests</h4>
+<p>Percentage of users in each interest group.</p>
+
+<h3 id="events">Events</h3>
+<p>Events show the list of events which triggered in app during the range(date range). An Event is an important occurrence in your app that you want to measure. You can report up to 500 different types of Events per app and you can associate up to 25 unique parameters with each Event type. Each event type is identified by a unique name. Event names can be up to 40 characters long, may only contain <code class="highlighter-rouge">alphanumeric characters</code> and <code class="highlighter-rouge">underscores</code>, and must start with an <code class="highlighter-rouge">alphabetic character</code>. The <code class="highlighter-rouge">firebase_</code>, <code class="highlighter-rouge">google_</code> and <code class="highlighter-rouge">ga_</code> prefixes are reserved and should not be used.</p>
+
+<p>Firebase provides the following metrics for each event:</p>
+<ul>
+  <li>
+    <p>Users: number of users who triggered the event.</p>
+  </li>
+  <li>
+    <p>Count per user: average number of times per user that the event was triggered.</p>
+  </li>
+  <li>
+    <p>Value: the sum of all VALUE parameters supplied with the event. Use this context-sensitive metric to track any data that is valuable to your app (e.g., revenue, time, distance).</p>
+  </li>
+</ul>
+
+<p>There are some events that are automatically triggered for firebase for more information https://support.google.com/firebase/answer/6317485?hl=en. You can log events with the <code class="highlighter-rouge">logEvent()</code> method.
+The following example how to log a SELECT_CONTENT Event:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>undle bundle = new Bundle();
+bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id);
+bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+</code></pre>
+</div>
+
+<h3 id="firebase-audience">Firebase Audience</h3>
+
+<p>You can combine events and user properties into Firebase audiences. You can perform deep analysis on each of your audiences.For example, you might want to look users from a specific interest who have reached a certain achievement level in your app.</p>
+
+<p>Use audiences to:</p>
+<ul>
+  <li>
+    <p>Filter reports so you can analyze how different user segments engage with your app</p>
+  </li>
+  <li>
+    <p>Target Notifications to individual audiences</p>
+  </li>
+  <li>
+    <p>Target Remote Config to deliver custom experiences to different audiences</p>
+  </li>
+</ul>
+
+<p>To create a new audience:</p>
+
+<ul>
+  <li>
+    <p>In Firebase, click the Audiences tab.</p>
+  </li>
+  <li>
+    <p>Click NEW AUDIENCE.</p>
+  </li>
+  <li>
+    <p>Enter a name and description for the audience. This name and description will allow you to identify the audience in the management table.</p>
+  </li>
+  <li>
+    <p>Click Select Event or User Property.</p>
+  </li>
+  <li>
+    <p>Create one or more conditions that define who should be included in this audience. You can create conditions that include the users who have taken specific actions(Event) or who share a property(User Property). Combine multiple conditions with OR or AND.</p>
+  </li>
+  <li>
+    <p>Click Create to save your condition(s) and create the audience.</p>
+  </li>
+</ul>
+
+<h4 id="references">References</h4>
+<p>https://firebase.google.com/docs/analytics/</p>

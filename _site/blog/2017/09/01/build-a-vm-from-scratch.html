@@ -1,0 +1,192 @@
+<h2 id="build-a-virtual-machine-from-scratch">Build a Virtual Machine From Scratch</h2>
+<blockquote>
+  <p>Creating and Optimizing Virtual Machine</p>
+</blockquote>
+
+<p>Virtual machine is a robust concept to achieve platform independent design for various platforms (operating system: windows, linux, mac). These programming languages are designed above the layer of core architecture (x86, x86_64) and rely on OS system calls. The code is compiled and interpreted to machine languages(binary language). Now, the question arises how this virtual machine attains platform independence for programming languages like Java. Lua and Python etc. Virtual Machines provides an abstraction layer for these programming languages. In any platform, these translators generates an intermediate code which is understandable by virtual machines and  designed for every platform.</p>
+
+<h3 id="tools-required-to-build-a-virtual-machine">Tools required to build a Virtual Machine</h3>
+<ul>
+  <li>GCC/Clang, G++, GDB, CMAKE</li>
+  <li>Lex, YACC</li>
+  <li>Nano, VIM</li>
+  <li>Core-libs and Debugging Tool</li>
+</ul>
+
+<h3 id="why-you-should-write-a-virtual-machine">Why you should write a Virtual Machine</h3>
+
+<ul>
+  <li>
+    <p>You want a deeper understanding of how a computer works. Low-level instructions executed on CPU(addressing modes).
+So, to understand virtual machine, a better way is to build it.</p>
+  </li>
+  <li>
+    <p>Learn how a programming language works, Its internal architecture. Moreover how to optimize a virtual machine (instruction and memory). JIT(Jist-In-Time compiler) is used in JVM, Python VM, and various other programming languages. And GC(Garbage Collector) to avoid memory leakages and a better way to organize main memory.</p>
+  </li>
+</ul>
+
+<h3 id="cpu-architecture">CPU Architecture</h3>
+
+<p>The processor in a computer responsible for executing instruction and performing hardware interactions. The processor has a manual of Mnemonics(assembly language instruction) which wraps binary language instruction. The bandwidth of the processor decides the number of instruction is going to execute in a machine cycle. Which known as the frequency of the processor. The processor also contains General Purpose Register(GPR) like A,B,C,D,E.  These register stores information of various operation going to be performed in a next cycle. They also have special purpose registers like flags, DS, and various other segments to control instructions flow.</p>
+
+<h3 id="stack-based-virtual-machine">Stack based Virtual Machine</h3>
+
+<p>In the stack based virtual machine, which means it’s a stack which can perform operations like Push(insertion), Pop(deletion). These are simpler to implement than register based virtual machine.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Instruction</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PUSH 5</td>
+      <td>pushes 5 to stack</td>
+    </tr>
+    <tr>
+      <td>PUSH 10</td>
+      <td>pushes 10 to stack</td>
+    </tr>
+    <tr>
+      <td>ADD</td>
+      <td>Pops 2 values from TOS, Adds them and Pushes Back to stack</td>
+    </tr>
+    <tr>
+      <td>POP</td>
+      <td>Pops the Top element in stack and print it</td>
+    </tr>
+    <tr>
+      <td>SET A 0</td>
+      <td>Set A register to 0</td>
+    </tr>
+    <tr>
+      <td>HALT</td>
+      <td>Stop the Program</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="instruction-cycle">Instruction Cycle</h3>
+<p>Virtual machines are simpler than you might think. They follow a simple pattern, which is <strong>Instruction Cycle</strong> Fetch, Decode and Execute. First, we fetch the next instruction list or code, we then decode that instruction and add to the instruction set and executes that instruction.</p>
+
+<h3 id="makefile">Makefile</h3>
+<p>Makefile is used to automate and resolve dependency for our project. C/C++ files need to be compiled each files compilation manually will take a long time and order of their compilation will be a memorize tasks. Makefile does these task with a configuration on various platforms. When Linux introduced software were written in such a way for years.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SRC_FILES = main.c
+CC_FLAGS = -Wall -Wextra -g -std=c11
+CC = clang
+
+all:
+   ${CC} ${SRC_FILES} ${CC_FLAGS} -o mac
+</code></pre>
+</div>
+
+<h3 id="program-instruction">Program Instruction</h3>
+
+<p>We know the assembly instruction needs to be executed then simply put this instruction in enum so that they can be referenced easily.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>typedef enum {
+   PSH,
+   ADD,
+   POP,
+   SET,
+   HLT
+} InstructionSet;
+</code></pre>
+</div>
+
+<p>Now, storing the actual instruction which is to be executed on the processor. Storing these instruction set in Array.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>const int program[] = {
+   PSH, 5,
+   PSH, 6,
+   ADD,
+   POP,
+   HLT
+};
+</code></pre>
+</div>
+
+<p><strong>Fetching the Current Instruction</strong>
+We have stored our instruction in an array. It will be easy to fetch instruction, but virtual machine also holds a variable to know the instruction executing known as a Program Counter(PC), Instruction Pointer(IP).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;stdbool.h&gt;
+#include&lt;stdio.h&gt;
+#include&lt;limits.h&gt;
+#include&lt;math.h&gt; 
+#define sp (registers[SP])
+#define ip (registers[IP])
+bool running = true;
+int IP = 0; 
+int main() {
+typedef enum {
+PSH,
+ADD,
+POP,
+SET,
+HLT
+} InstructionSet;
+const int program[] = {
+PSH, 5,
+PSH, 6,
+ADD,
+POP,
+HLT
+};
+typedef enum {
+     A, B, C, D, E, F,
+     NUM_OF_REGISTERS
+} Registers; 
+int registers[NUM_OF_REGISTERS];
+  while (running) {
+    eval(fetch()); // PSH
+    if (x == HLT) running = false;
+    IP++; // increment instruction pointer
+}
+// This will return the current instruction
+int fetch() {
+   return program[ip];
+}
+// Eval Function for HALT 
+void eval(int instr) {
+switch (instr) {
+case HLT:
+    running = false;
+    break;
+}  
+case PSH: {
+        sp++;
+        stack[sp] = program[++ip];
+        break;
+}
+case POP: {
+// store the value at the stack in val_popped THEN decrement the stack ptr
+int val_popped = stack[sp--];
+
+// print it out!
+printf("popped %d\n", val_popped);
+break;
+}
+case ADD: {
+// first we pop the stack and store it as 'a'
+int a = stack[sp--];
+
+// then we pop the top of the stack and store it as 'b'
+int b = stack[sp--];
+
+// we then add the result and push it to the stack
+int result = b + a;
+sp++; // increment stack pointer **before**
+stack[sp] = result; // set the value to the top of the stack
+
+// all done!
+break;
+}  }
+</code></pre>
+</div>
+
+<p><strong>Execute</strong>
+Now save the above code snippet as main.c and run the make file using then command in the project directory
+    make</p>

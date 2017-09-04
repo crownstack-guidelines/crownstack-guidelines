@@ -59,7 +59,7 @@ header {
 section {
   @include outer-container;
 
-  width: 720px;
+  width: 900px;
   margin: 10px auto;
   padding-top: 10px;
 
@@ -105,10 +105,6 @@ article {
     font-weight: 400;
     line-height: 1.4em;
     margin-bottom: .3em;
-
-    @include media($medium-screen) {
-      font-size: 1.4em;
-    }
   }
 
   h3 {
@@ -343,7 +339,7 @@ footer {
 
 #archive {
   h2 {
-    color: $light-gray;
+    color: #000000;
   }
 
   ul {
