@@ -1,5 +1,5 @@
 ---
-title:  "How to improve your programming"
+title:  "How to become a better programmer"
 date:   2017-09-11
 author: Ashutosh Singh
 categories:
@@ -8,28 +8,28 @@ tags:
 - android
 ---
 
-`Eric S. Raymond` says that `Computer science education cannot make anybody an expert programmer any more than studying brushes and pigment can make somebody an expert painter`. It is an art that comes from hard work.  A programmer gives his time and best effort to programming. He cares about his algorithms as well as algorithms. The well-structured code is the first step for it.
+`Eric S. Raymond` says that `Computer science education cannot make anybody an expert programmer any more than studying brushes and pigment can make somebody an expert painter`. It is an art that comes from hard work. A programmer gives his time and best effort to programming. He cares about his algorithms as well as code structure. The well-structured code is the first step for it.
 
 ### Code Structure
 
-We cant say that good formated code is not important because it makes other people read your code easily and understand it.Most people, both programmers and management teams, do not make any structure when it comes to coding. Without any protocol, they start coding, which leads to complexity. Good presentation techniques are important, not for code beauty, but to avoid mistakes in your code. A better structure would save time and increase efficiency. Don't write code just to work or finishing the task. Write the code in well structured, always think before writing the code that we are writing code for others not for yourself.
+We can't say that good formated code is not important because it increase readability and understandability of it. Most people, both programmers and management teams, do not make any structure when it comes to coding. Without any protocol, they start coding, which leads to complexity. Good presentation techniques are important, not for code beauty, but to avoid mistakes in your code. A better structure would save time and increase efficiency. Don't write code just to work or finishing the task. Write the code in well structured, always think before writing the code that we are writing code for others not for yourself.
 
 Some common code structure rules include
 
-* Code no more than one statement per line.
-* Divide programs into functions.
-* Functions should perform only one task.
+* One statement per line.
+* Indentation should be consistent.
+* Divide programs into methods.
+* Don't use white space unless there is a natural paragraph.
+* Methods should perform only one task.
 * Variable names should be meaningful, clear and explain itself.
+* For keywords and variables, use lower case.
+* Upper case should be used for defined static constants.
 * Use of global variables should be avoided.
-* All variables should be explicitly declared and given an initial value.
+* All variables should be explicitly declared and give an initial value.
 * Hierarchial data structures should be used to keep the data and program structure.
 * Compound conditional statements should be limited to avoid confusion.
-* Indentation should be consistent.
 * When used in functions, the use of { and } should be on their own lines to demark blocks of code.
-* Upper case should be used for defined static constants.
-* For keywords and variables, use lower case.
 * Use simple incrementer variables for loops such as the Fortran integer variable names which are i, j, k, l,m, and n.
-* Don't use white space unless there is a natural paragraph.
 * We should put our most imp function at the top and the most important line at the top of the function.
 * Put function/method from most important to least important priority. So that code reviewer can see the most important code of class first.
 * Always pass data in the object, try to avoid work on raw data.
@@ -68,3 +68,10 @@ Some common code structure rules include
 * Read blogs, since the blog is often written by the programmer and share their personal views, experience. It helps us to increase our programming skill.
 * Read other people code and try to learn from them.
 * Contribute to open-source projects as a bridge from beginner to intermediate.
+
+### How to improve you code base one step at a time
+
+* Daily review your code and try to improve the code.
+* Indentation should be consistent.
+* Check your app dependecies, remove the unsed one.
+* Remove unsed method, and line of code. It creates confusion for other developer.
