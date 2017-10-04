@@ -5,7 +5,7 @@ author: Ashutosh Singh
 categories:
 - blog
 tags:
-- android
+- programming
 ---
 
 `Eric S. Raymond` says that `Computer science education cannot make anybody an expert programmer any more than studying brushes and pigment can make somebody an expert painter`. It is an art that comes from hard work. A programmer gives his time and best effort to programming. He cares about his algorithms as well as code structure. The well-structured code is the first step for it.
