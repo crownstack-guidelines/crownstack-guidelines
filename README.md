@@ -15,7 +15,7 @@ Failure to deliver a blog will be employee's responibility in the end.
 ## How to contribute
 
 1. Clone this repository.
-2. Go to `_posts/authors.yml` and add yourself as author like this
+2. Go to `_data/authors.yml` and add yourself as author like this
 
 ```
 Aashish Dhawan:
