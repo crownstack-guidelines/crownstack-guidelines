@@ -43,15 +43,15 @@ Aashish Dhawan:
 3. Blog should be of high quality and should be written in such a way that other people can learn from it. 
 4. Please do not make a documentation. In any case the origial documentation is going to be better than what you are going to write. 
 5. The title of blog should be eye catching. 
-6. The blog should be of decent lenght.
+6. The blog should be of decent lengh.
 
 ## What to check before publishing the blog
 
-1. There are no grammatical and spelling mistake.
+1. There are no grammatical and spelling mistakes.
 2. Please make sure you are using markdown properly and code blocks, titles, higlighting is working fine.
 3. Please make sure you have added tags, categories, authors, file name correctly. 
 4. Please make sure you have checked the preview of blog yourself. 
-5. Please make sure your blog does not look like a  documentation. 
+5. Please make sure your blog does not look like a documentation. 
 6. Please make sure that you have read your blog and you are satisfied with the output.
 
 ## What to check after publishing the blog
