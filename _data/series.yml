@@ -1,24 +1,4 @@
-- name: Android
+- name: Quality Analyst
   desc: |
-    Applying best-practices &amp; techniques to Android development
-  tag_name: android
-
-- name: iOS
-  desc: |
-    Applying best-practices &amp; techniques to iOS development
-  tag_name: iOS
-
-- name: Programming
-  desc: |
-    Applying best-practices to art of programming
-  tag_name: programming
-
-- name: Dev Ops
-  desc: |
-    Applying best-practices to art of programming
-  tag_name: devops
-
-- name: FrontEnd
-  desc: |
-    Applying best-practices to art of programming
-  tag_name: frontend
+    Guidlelines for QAs and their roles and responsibilities.
+  tag_name: qa
